@@ -11,17 +11,17 @@ A meta-repository creates a single point of access for someone to find all of th
 
 <!-- Get rid of the metarepo instructions (the two sections above this) once you're done. -->
 
-# lastname-etal_year_journal
+# Lau et al. (2025) 
 
-**your Paper Title here (once published, include a link to the text)**
+**Navigating multi-actor robustness conflicts and information-action feedbacks in adaptive regional water infrastructure pathways**
 
-First Last<sup>1\*</sup>, First Last<sup>1</sup>,  and First Last<sup>1, 2</sup>
+Lillian Lau<sup>1\*</sup>, Patrick M. Reed<sup>1</sup>,  and David F. Gold<sup>2</sup>
 
-<sup>1 </sup>Pacific Northwest National Laboratory, Richland, WA, USA.
+<sup>1 </sup>Cornell University, Ithaca, NY, USA.
 
-<sup>2 </sup> Institute for Energy Analysis, Oak Ridge Associated Universities, Washington, DC, USA
+<sup>2 </sup>Utrecht University, Utrecht, Netherlands.
 
-\* corresponding author:  email@myorg.gov
+\* corresponding author:  lbl59@cornell.edu
 
 ## Abstract
 _your abstract here_
