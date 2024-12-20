@@ -11,7 +11,7 @@ A meta-repository creates a single point of access for someone to find all of th
 
 <!-- Get rid of the metarepo instructions (the two sections above this) once you're done. -->
 
-# Lau et al. (2025) 
+# Lau et al. (2025) DU Pathways TRAILS
 
 **Navigating multi-actor robustness conflicts and information-action feedbacks in adaptive regional water infrastructure pathways**
 
