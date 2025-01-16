@@ -1,6 +1,6 @@
 # Lau et al. (2025) DU Pathways TRAILS
 
-**Navigating multi-actor robustness conflicts and information-action feedbacks in adaptive regional water infrastructure pathways**
+**Demystifying regional water investment pathways under deep uncertainty: Integrating multi-objective reinforcement learning, robustness conflicts, and explainable artificial intelligence**
 
 Lillian Lau<sup>1\*</sup>, Patrick M. Reed<sup>1</sup>,  and David F. Gold<sup>2</sup>
 
