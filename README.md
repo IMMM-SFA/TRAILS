@@ -1,16 +1,3 @@
-[![DOI](https://zenodo.org/badge/265254045.svg)](https://zenodo.org/doi/10.5281/zenodo.10442485)
-
-<!-- Get rid of the metarepo instructions (the two sections below this) once you're done. -->
-
-# metarepo
-## [Check out the website for instructions](https://immm-sfa.github.io/metarepo)
-`metarepo` is short for meta-repository, a GitHub repository that contains instructions to reproduce results in a published work. This repo is a template for creating your own metarepo.
-
-## Purpose
-A meta-repository creates a single point of access for someone to find all of the components that were used to create a published work for the purpose of reproducibility. This repository should contain references to all minted data and software as well as any ancillary code used to transform the source data, create figures for your publication, conduct the experiment, and / or execute the contributing software.
-
-<!-- Get rid of the metarepo instructions (the two sections above this) once you're done. -->
-
 # Lau et al. (2025) DU Pathways TRAILS
 
 **Navigating multi-actor robustness conflicts and information-action feedbacks in adaptive regional water infrastructure pathways**
@@ -27,7 +14,7 @@ Lillian Lau<sup>1\*</sup>, Patrick M. Reed<sup>1</sup>,  and David F. Gold<sup>2
 Urban water utilities are adopting more advanced dynamic and adaptive pathway policy frameworks in the face of climate change, accelerating demand, and financial constraints. The inclusion of evolutionary multi-objective reinforcement learning (eMORL) has further enabled more efficient searches for high-performing infrastructure policy pathways that balance conflicting objectives and remain robustness amid hydrological and socioeconomic vulnerabilities across varying timescales. However, the technical outcomes of these frameworks, which include highly resolved state-action representations under deeply uncertain scenarios, are often complex and challenging to communicate to key decision-makers. To facilitate the navigation of the time-varying impacts of external deeply uncertain (DU) factors and clarify the representation of state-action dependencies across actors and over time, we contribute the DU Pathways Time-varying Regional Assessment of Infrastructure Pathways for the Long- and Short-term (TRAILS) framework. We apply TRAILS on the North Carolina Research Triangle, a challenging six-utility cooperative regional system confronting \$1 billion in in investments to support the maintenance and expansion of its water infrastructure by 2060. The TRAILS framework reveals that the timing, frequency, and magnitude of water supply infrastructure investments differ widely across the Triangle's actors and different sampled DU states of the world. We also discover critical periods of robustness conflict and transitions within and between each actor’s infrastructure pathways.  We apply explainable artificial intelligence (xAI) methods to reveal key DU factors that drive changes in robustness during these critical transition periods. Additionally, we utilize Information Theoretic sensitivity analyses to clarify the most consequential state information-action feedbacks that shape individual and regional performance and robustness. Overall, the analytics facilitated by the DU Pathways TRAILS framework elucidate how financially significant long-term investments and short-term operational actions shape individual utilities and overall regional robustness. 
 
 ## Journal reference
-_your journal reference_
+_In prep_
 
 ## Code reference
 References for each minted software release for all code involved.  
