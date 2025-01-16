@@ -10,11 +10,14 @@ Lillian Lau<sup>1\*</sup>, Patrick M. Reed<sup>1</sup>,  and David F. Gold<sup>2
 
 \* corresponding author:  lbl59@cornell.edu
 
-## Abstract
+## :memo: Abstract
 Urban water utilities are adopting more advanced dynamic and adaptive pathway policy frameworks in the face of climate change, accelerating demand, and financial constraints. The inclusion of evolutionary multi-objective reinforcement learning (eMORL) has further enabled more efficient searches for high-performing infrastructure policy pathways that balance conflicting objectives and remain robustness amid hydrological and socioeconomic vulnerabilities across varying timescales. However, the technical outcomes of these frameworks, which include highly resolved state-action representations under deeply uncertain scenarios, are often complex and challenging to communicate to key decision-makers. To facilitate the navigation of the time-varying impacts of external deeply uncertain (DU) factors and clarify the representation of state-action dependencies across actors and over time, we contribute the DU Pathways Time-varying Regional Assessment of Infrastructure Pathways for the Long- and Short-term (TRAILS) framework. We apply TRAILS on the North Carolina Research Triangle, a challenging six-utility cooperative regional system confronting \$1 billion in in investments to support the maintenance and expansion of its water infrastructure by 2060. The TRAILS framework reveals that the timing, frequency, and magnitude of water supply infrastructure investments differ widely across the Triangle's actors and different sampled DU states of the world. We also discover critical periods of robustness conflict and transitions within and between each actor’s infrastructure pathways.  We apply explainable artificial intelligence (xAI) methods to reveal key DU factors that drive changes in robustness during these critical transition periods. Additionally, we utilize Information Theoretic sensitivity analyses to clarify the most consequential state information-action feedbacks that shape individual and regional performance and robustness. Overall, the analytics facilitated by the DU Pathways TRAILS framework elucidate how financially significant long-term investments and short-term operational actions shape individual utilities and overall regional robustness. 
 
-## Journal reference
-_In prep_
+## :pencil2: Journal reference
+To cite this paper, please use the following citation _(Note: This work is currently in-prep and does not yet have a formal citation)_
+```
+Lau, L., Reed, P.M., and Gold, D.F. (2025). Demystifying regional water investment pathways under deep uncertainty: Integrating multi-objective reinforcement learning, robustness conflicts, and explainable artificial intelligence. _In prep_.
+```
 
 ## Code reference
 References for each minted software release for all code involved.  
@@ -28,7 +31,7 @@ _your software reference here_
 ## Data reference
 
 ### Input data
-Reference for each minted data source for your input data.  For example:
+Detailed information on generating the hydroclimatic realizations used in this experiment can be found 
 
 Human, I.M. (2021). My input dataset name [Data set]. DataHub. https://doi.org/some-doi-number
 
@@ -41,39 +44,28 @@ Human, I.M. (2021). My output dataset name [Data set]. DataHub. https://doi.org/
 
 _your output data references here_
 
-
-## Contributing modeling software
+## :computer: Contributing software
 | Model | Version | Repository Link | DOI |
 |-------|---------|-----------------|-----|
-| model 1 | version | link to code repository | link to DOI dataset |
-| model 2 | version | link to code repository | link to DOI dataset |
-| component 1 | version | link to code repository | link to DOI dataset |
+| WaterPaths | v1.0 | https://github.com/bernardoct/WaterPaths | 10.1016/j.envsoft.2020.104772 |
+| SHAP | v0.46.0 | https://shap.readthedocs.io/en/stable/ | https://doi.org/10.1038/s42256-019-0138-9 |
+| Scikit-Learn | v1.6.1 | https://scikit-learn.org/stable/ | https://doi.org/10.1038/s42256-019-0138-9 |
+| HDF5 for Python | v3.12.1 | https://docs.h5py.org/en/stable/index.html |  |
 
-## Reproduce my experiment
-Fill in detailed info here or link to other documentation to thoroughly walkthrough how to use the contents of this repository to reproduce your experiment. Below is an example.
+## :file_folder: Reproduce my experiment
+Clone this repository to get access to code scripts used to generate risk of failure (ROF) tables, run DU Re-Evaluation, and reproduce the figures. 
+Navigate into each folder (listed below) to refer to their detailed README files that provide step-by-step guidelines on how to navigate and execute their respective scripts.
 
+### What each folder contains 
+- `figure-code`: Contains the code required to generate most of the figures found in `figures`.
+- `figures`: Contains all the figures that can be found in the paper.
+- `scripts`: Contains all code and guidelines required to perform a smaller replication of the full experiment. The subfolders in this directory are labeled in the order of which they should be opened and attempted. 
 
+### Prerequisites
 1. Install the software components required to conduct the experiment from [contributing modeling software](#contributing-modeling-software)
 2. Download and install the supporting [input data](#input-data) required to conduct the experiment
-3. Run the following scripts in the `workflow` directory to re-create this experiment:
+3. Follow the guidelines detailed in the README files of the `scripts` directory to re-create this experiment.
 
-| Script Name | Description | How to Run |
-| --- | --- | --- |
-| `step_one.py` | Script to run the first part of my experiment | `python3 step_one.py -f /path/to/inputdata/file_one.csv` |
-| `step_two.py` | Script to run the second part of my experiment | `python3 step_two.py -o /path/to/my/outputdir` |
-
-4. Download and unzip the [output data](#output-data) from my experiment 
-5. Run the following scripts in the `workflow` directory to compare my outputs to those from the publication
-
-| Script Name | Description | How to Run |
-| --- | --- | --- |
-| `compare.py` | Script to compare my outputs to the original | `python3 compare.py --orig /path/to/original/data.csv --new /path/to/new/data.csv` |
-
-## Reproduce my figures
-Use the scripts found in the `figures` directory to reproduce the figures used in this publication.
-
-| Figure Number(s) | Script Name | Description | How to Run |
-| --- | --- | --- | --- |
-| 1, 2 | `generate_plot.py` | Description of figure, ie. "Plots the difference between our two scenarios" | `python3 generate_plot.py -input /path/to/inputs -output /path/to/outuptdir` |
-| 3 | `generate_figure.py` | Description of figure, ie. "Shows how the mean and peak differences are calculated" | `python3 generate_figure.py -input /path/to/inputs -output /path/to/outuptdir` |
+## :bar_chart: Reproduce my figures
+Use the scripts found in the `figures` directory to reproduce the figures used in this publication. Follow the guidelines detailed in the README file of the `figrue-code` directory.
 
