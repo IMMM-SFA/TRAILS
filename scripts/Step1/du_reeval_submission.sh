@@ -8,7 +8,7 @@
 #SBATCH --mail-user=lbl59@cornell.edu
 #SBATCH --mail-type=ALL
 
-export OMP_NUM_THREADS=32
+export OMP_NUM_THREADS=10
 module load py3-mpi4py
 module load py3-numpy
 

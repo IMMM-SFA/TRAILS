@@ -10,9 +10,8 @@ NUM_RDM = 10
 NUM_REAL = 10
 SOL_NUM = 140
 
-original_folder = f"sol{SOL_NUM}"
-hdf_folder = f"sol{SOL_NUM}_hdf_packed"
-
+original_folder = f"sol{SOL_NUM}"  # change this depending on where the CSV files are stored
+hdf_folder = f"sol{SOL_NUM}_hdf_packed" # change this depending on where you want the HDF45 files stored
 '''
 Tailor this section to suit available resources on your HPC cluster/machine.
 '''
