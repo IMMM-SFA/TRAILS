@@ -1,6 +1,7 @@
-## This directory contains scripts to recreate your experiment and results
+## Recreating experiments and results 
+This folder contains scripts to recreate a smaller version of the experiment performed in the TRAILS paper. See the table below for a brief description of each subfolder's contents.
 
-| Script Name | Description | How to Run |
-| --- | --- | --- |
-| `step_one.py` | Script to run the first part of my experiment | `python3 step_one.py -f /path/to/inputdata/file_one.csv` |
-| `step_two.py` | Script to run the second part of my experiment | `python3 step_two.py -o /path/to/my/outputdir` |
+| Subfolder | Description |
+| --- | --- |
+| `Phase1/` | Contains the scripts to replicate a smaller version of DU Re-Evaluation and convert its resulting files into a HDF5 format. |
+| `Phase2/` | Contains the scripts to calculate time-varying performance and robustness. |

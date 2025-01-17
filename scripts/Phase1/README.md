@@ -1,10 +1,8 @@
 ## Re-evaluating a selected pathway policy.
 
-This directory contains the input files and scripts to perform the DU Re-Evaluation of a selected pathway policy (referred to as a Solution from hereon out). 
-In this example we will be selecting **Solution 140**, which corresponds to the  Regionally Robust (RR) pathway policy shown in the paper. 
-This subdirectory provides the scripts necessary to replicate the DU Re-Evaluation of Solution 140 under a subset of hydroclimatic realizations and DU factors.
+This directory contains the input files and scripts to perform the DU Re-Evaluation of a selected pathway policy (referred to as a Solution from hereon out). In this example we will be selecting **Solution 140**, which corresponds to the Regionally Robust (RR) pathway policy shown in the paper. This subdirectory provides the scripts necessary to replicate the DU Re-Evaluation of Solution 140 under a subset of hydroclimatic realizations and DU factors.
 
-:exclamation: IMPORTANT :exclamation: Using a Linux interface and a HPC resource is highly recommended for completing the following steps. 
+:exclamation: **IMPORTANT** :exclamation: Using a Linux interface and a HPC resource is highly recommended for completing the following steps. It is also highly recommended to familiarize yourself with the scripts provided prior to attempting the following steps.
 
 ### :open_file_folder: Folder contents
 
