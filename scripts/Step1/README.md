@@ -6,18 +6,21 @@ This subdirectory provides the scripts necessary to replicate the DU Re-Evaluati
 
 :exclamation: IMPORTANT :exclamation: Using a Linux interface and a HPC resource is highly recommended for completing the following steps. 
 
-## What each folder contains
-- `logs/`: Will store all the `.out` and `.err` files that store any output or error messages generated while running your scripts.
-- `output/`: Will store all the CSV output files resulting from DU Re-Evaluation. 
-- `rof_tables_reeval/`: Will store all the ROF tables generated for DU Re-Evaluation
-- `src/`: Contains all the source code needed to compile and run WaterPaths
-- `TestFiles/`: Contains all the input files required for WaterPaths to run
-- `updated_RDM_inflows_demands/`: Contains subfolders (`RDM_i/`) representing independent deeply uncertain states of the world (DU SOWs) that each store their associated hydroclimatic realizations. This folder only contains 10 `RDM` subfolders representing a subset of 10 DU SOWs out of the 1,000 DU SOWs used to run the full experiment. 
-    - `RDM_i/final_synthetic_inflows/`: Contains the inflow timeseries of all water sources modeled in WaterPaths.
-    - `RDM_i/final_synthetic_inflows/evaporation/`: Contains the evaporation timeseries of all reservoirs modeled in WaterPaths.
-    - `RDM_i/synthetic_demands_pwl/`: Contains the demand timeseries of all utilities modeled in WaterPaths.
+### :open_file_folder: Folder contents
 
-## Steps 
+| Subfolder | Description |
+| --- | --- |
+| `logs/` | Will store all the `.out` and `.err` files that store any output or error messages generated while running your scripts. |
+| `output/` | Will store all the CSV output files resulting from DU Re-Evaluation. |
+| `rof_tables_reeval/` | Will store all the ROF tables generated for DU Re-Evaluation. |
+| `src/` | Contains all the source code needed to compile and run WaterPaths. |
+| `TestFiles/` | Contains all the input files required for WaterPaths to run. |
+| `updated_RDM_inflows_demands/` | Contains subfolders (`RDM_i/`) representing independent deeply uncertain states of the world (DU SOWs) that each store their associated hydroclimatic realizations. This folder only contains 10 `RDM` subfolders representing a subset of 10 DU SOWs out of the 1,000 DU SOWs used to run the full experiment.  |
+| `RDM_i/final_synthetic_inflows/` | Contains the inflow timeseries of all water sources modeled in WaterPaths. |
+| `RDM_i/final_synthetic_inflows/evaporation/` | Contains the evaporation timeseries of all reservoirs modeled in WaterPaths. |
+| `RDM_i/synthetic_demands_pwl/` | Contains the demand timeseries of all utilities modeled in WaterPaths. |
+
+### :walking: Steps 
 
 1. **Modifying and compiling WaterPaths**
 

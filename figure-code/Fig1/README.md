@@ -15,7 +15,7 @@ This directory contains the code to create Figure 1. See the subfolder descripti
 | `Wake_Lakes/` | Contains the formal boundaries for all lakes in Wake County. |
 | `WakeCounty/` | Contains the formal boundaries of Cary, |
 
-### ::computer:: Generating the figure
+### :computer: Generating the figure
 To generate Figures 1(a) and (b), run the code in the order shown in the table below.
 
 | Figure| Script Name | Description | How to Run |
