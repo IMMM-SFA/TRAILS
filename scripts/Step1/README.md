@@ -17,12 +17,14 @@ This subdirectory provides the scripts necessary to replicate the DU Re-Evaluati
     - `RDM_i/final_synthetic_inflows/evaporation/`: Contains the evaporation timeseries of all reservoirs modeled in WaterPaths.
     - `RDM_i/synthetic_demands_pwl/`: Contains the demand timeseries of all utilities modeled in WaterPaths.
 
-## Phases 
+## Steps 
 
-1. **Modifying and compiling WaterPaths **
+1. **Modifying and compiling WaterPaths**
+
     You will first need to update line 2219 in `src/Problem/Triangle.cpp` such that `rdm_tseries_dir` is set to the correct directory in which your `updated_RDM_inflows_demands` folder is stored. In your command line, run `make gcc` to compile WaterPaths.  You will know that this step has been completed once you see a `triangleSimulation` file appear in this folder.
 
 2. **Generating the ROF tables**
+
     To perform DU Re-Evaluation, you will first need to generate the ROF tables corresponding to each hydroclimatic realization. To do this, run the code in the order in which they appear in the table below.
     | Script Name | Description | How to Run |
     | --- | --- | --- |
@@ -32,6 +34,7 @@ This subdirectory provides the scripts necessary to replicate the DU Re-Evaluati
     Once the ROF tables have been generated, check that they are stored in their respective `RDM_i` subfolders in `rof_tables_reeval/`.
 
 3. **Running DU Re-Evaluation**
+
     Once you have successfully generated your ROF tables, you are ready to perform DU Re-Evaluation. Run the code shown in the table below to submit a re-evaluation job to the queue. 
     | Script Name | Description | How to Run |
     | --- | --- | --- |
@@ -40,6 +43,7 @@ This subdirectory provides the scripts necessary to replicate the DU Re-Evaluati
     Once this step has been completed, you will find the output containing information on your utilities (`Utilities_*.csv`), drought mitigation policies (`Policies_*.csv`) and water source expansion (`WaterSource_*.csv`) in the `output/1/sol140/` folder (the solution number will change depending on what you have selected) . These files are very large - and that's normal! 
 
 4. **Converting your CSV files to HDF5**
+
     We will now compress you CSV files into HDF5 format to streamline the data read/write process. To do this, first open the `convert_to_hdf.py` file and modify lines 13 and 14 to more accurately reflect where you have stored your CSV files, and where you would like to store your HDF5 files. Then run the code shown in the table below. 
     | Script Name | Description | How to Run |
     | --- | --- | --- |

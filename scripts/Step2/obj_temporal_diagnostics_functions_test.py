@@ -44,7 +44,7 @@ def calculate_sol_reliability(util_num, window_size, sol_num, RDM, skip_weeks = 
     fail_counts = np.zeros([NUM_REAL, NUM_WEEKS])
 
     # Load the HDF5 file
-    hdf5_file = pd.HDFStore(f'../Step1/sol{sol_num}_hdf_packed/Utilities_s{sol_num}_RDM{RDM}.h5', 'r') # change this depending on where the HDF5 files are stored
+    hdf5_file = pd.HDFStore(f'../Phase1/sol{sol_num}_hdf_packed/Utilities_s{sol_num}_RDM{RDM}.h5', 'r') # change this depending on where the HDF5 files are stored
 
     st_vol_col = str(util_num) + 'st_vol'
     capacity_col = str(util_num) + 'capacity'
@@ -91,7 +91,7 @@ def calculate_restriction_frequency(util_num, window_size, sol_num, RDM, skip_we
     col_name = str(util_num) + 'rest_m'
 
     # Load the HDF5 file
-    hdf5_file = pd.HDFStore(f'../Step1/sol{sol_num}_hdf_packed/Policies_s{sol_num}_RDM{RDM}.h5', 'r') # change this depending on where the HDF5 files are stored
+    hdf5_file = pd.HDFStore(f'../Phase1/sol{sol_num}_hdf_packed/Policies_s{sol_num}_RDM{RDM}.h5', 'r') # change this depending on where the HDF5 files are stored
 
     for rel in range(NUM_REAL):
         key = f'r{rel}'
@@ -133,7 +133,7 @@ def calculate_peak_financial_costs(util_num, window_size, sol_num, RDM):
     allreals_year_insurance_contract_cost = np.zeros([NUM_REAL, NUM_WEEKS])
 
     # Load the HDF5 file
-    hdf5_file = pd.HDFStore(f'../Step1/sol{sol_num}_hdf_packed/Utilities_s{sol_num}_RDM{RDM}.h5', 'r') # change this depending on where the HDF5 files are stored
+    hdf5_file = pd.HDFStore(f'../Phase1/sol{sol_num}_hdf_packed/Utilities_s{sol_num}_RDM{RDM}.h5', 'r') # change this depending on where the HDF5 files are stored
     max_pfc = np.zeros(NUM_REAL)
 
     for rel in range(NUM_REAL):
@@ -186,7 +186,7 @@ def calculate_worst_case_cost(util_num, window_size, sol_num, RDM):
     allreals_avg_revenue = np.zeros([NUM_REAL, NUM_WEEKS])
 
     # Load the HDF5 file
-    hdf5_file = pd.HDFStore(f'../Step1/sol{sol_num}_hdf_packed/Utilities_s{sol_num}_RDM{RDM}.h5', 'r') # change this depending on where the HDF5 files are stored
+    hdf5_file = pd.HDFStore(f'../Phase1/sol{sol_num}_hdf_packed/Utilities_s{sol_num}_RDM{RDM}.h5', 'r') # change this depending on where the HDF5 files are stored
     
     for rel in range(NUM_REAL):
         key = f'r{rel}'
@@ -234,7 +234,7 @@ def calculate_unit_cost(util_num, window_size, sol_num, RDM):
     allreals_obs_ann_dem = np.zeros(NUM_REAL)
 
     # Load the HDF5 file
-    hdf5_file = pd.HDFStore(f'../Step1/sol{sol_num}_hdf_packed/Utilities_s{sol_num}_RDM{RDM}.h5', 'r') # change this depending on where the HDF5 files are stored
+    hdf5_file = pd.HDFStore(f'../Phase1/sol{sol_num}_hdf_packed/Utilities_s{sol_num}_RDM{RDM}.h5', 'r') # change this depending on where the HDF5 files are stored
 
     pv_ds_payments_col = str(util_num) + 'pv_debt_serv'
     demand_col = str(util_num) + 'unrest_demand'
