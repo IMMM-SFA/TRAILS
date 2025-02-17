@@ -1,7 +1,7 @@
 """
 Created on Tues Apr 16 10:41:00 2024 by @lbl59 (Lillian Lau)
 """
-#%%
+#%% Import all necessary libraries
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
