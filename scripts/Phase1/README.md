@@ -41,13 +41,16 @@ This directory contains the input files and scripts to perform the DU Re-Evaluat
     | --- | --- | --- |
     | `du_reeval_submission.sh` | Submits the `du_reeval_script.py` Python script to your computing resource's queue. This step can take up to 48 hours to complete (depending on your architecture), so regularly check your job queue by typing `squeue` into your command line. | `sbatch du_reeval_script.sh` |
 
-    Once this step has been completed, you will find the output containing information on your utilities (`Utilities_*.csv`), drought mitigation policies (`Policies_*.csv`) and water source expansion (`WaterSource_*.csv`) in the `output/1/sol140/` folder (the solution number will change depending on what you have selected) . These files are very large - and that's normal! 
+    Once this step has been completed, you will find that an `output/` folder has been created in the  containing information on your utilities (`Utilities_*.csv`), drought mitigation policies (`Policies_*.csv`) and water source expansion (`WaterSource_*.csv`) in the `output/1/pwl/` folder. These files are very large - and that's normal! You will also find the performance objectives `.csv` and pathways `.out` files in this new folder.
 
-4. **Converting your CSV files to HDF5**
+4. **Organizing your performance objectives' pathways files**
+    For ease of use further into our replication process, you will want to create a folder called `solXX__objs_pathways/` in the `output/`  folder that has just been created. Replace XX with the number of the solution that you have selected. Then, move all your performance objectives `.csv` and pathways `.out` files into the `solXX__objs_pathways/` folder.
+
+5. **Converting your CSV files to HDF5**
 
     We will now compress you CSV files into HDF5 format to streamline the data read/write process. To do this, first open the `convert_to_hdf.py` file and modify lines 13 and 14 to more accurately reflect where you have stored your CSV files, and where you would like to store your HDF5 files. Then run the code shown in the table below. 
     | Script Name | Description | How to Run |
     | --- | --- | --- |
     | `convert_to_hdf.sh` | Submits the `convert_to_hdf.py` Python script to your computing resource's queue. This step can take up to 2 hours to complete (depending on your architecture), so regularly check your job queue by typing `squeue` into your command line. | `sbatch convert_to_hdf.sh` |
     
-    You should be able to locate all your HDF5 in your selected folder once this step is completed. Move your HDF5 folder to the main `Step1/` directory for easier access in Step 2.
+    You should be able to locate all your HDF5 in your selected folder once this step is completed. Move your HDF5 folder to the main `Phase1/` directory for easier access in Step 2.
