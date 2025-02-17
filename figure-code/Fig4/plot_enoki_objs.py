@@ -1,7 +1,7 @@
+#%%
 """
 Created on Tues Apr 16 10:41:00 2024 by @lbl59 (Lillian Lau)
 """
-#%%
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -37,7 +37,6 @@ uc_selected = ((uc_df.iloc[selected_rows,:] - uc_df.iloc[regional_policy_num,:])
 objs_df_dict = {1: rel_selected, 2: rf_selected, 3: inpc_selected,
                 4: pfc_selected, 5: wcc_selected, 6: uc_selected}
 
-#%%
 # get du factor names
 util_names =  ['OWASA', 'Durham', 'Cary', 'Raleigh', 'Chatham', 'Pittsboro']
 util_abbrevs = ['O', 'D', 'C', 'R', 'Ch', 'P']
@@ -46,7 +45,7 @@ obj_names_full = ['Reliability (%)', 'Restriction Frequency (%)', 'Infrastructur
                   'Peak Financial Cost', 'Worst-Case Cost', 'Unit Cost ($/kgal)']
 
 num_utils = len(util_names)
-figname = f'fig4b_objs_enoki_all.pdf'
+figname = f'objs_enoki_all.pdf'
 supertitle = '% change in objectives by utility'
 
 colors = ['#DC851F', '#48A9A6', '#355544']  
@@ -104,5 +103,5 @@ labels = ['Durham-focused', 'Raleigh-focused', 'Regionally robust']
 plt.legend(handles, labels, loc='lower center', ncol=3, bbox_to_anchor=(-0.35, -0.3), 
            fontsize=14, frameon=False)
 
-plt.savefig(figname, dpi=300, bbox_inches='tight')
-#plt.show()
+plt.show()
+# plt.savefig(figname, dpi=300, bbox_inches='tight')

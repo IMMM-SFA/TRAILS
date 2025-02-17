@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-#%%
 dvs_filename = 'refset_DVs_headers_abbrev.csv'
 dvs_df = pd.read_csv(dvs_filename, header=0, index_col=0)
 selected_rows = [92, 132, 140]
@@ -59,9 +58,7 @@ for util in range(len(util_names)):
     axes[util].set_xticklabels(['1.0', '0.5', '0.0'])
     axes[util].set_xlim([0, 1.0])
     axes[util].set_xlabel(r'Increased use $\longrightarrow$')
-
-#%%
-plt.savefig('fig4c_dv_bars_final.pdf')
-#plt.show()
+#plt.savefig('dv_bars_final.pdf')
+plt.show()
 
 
