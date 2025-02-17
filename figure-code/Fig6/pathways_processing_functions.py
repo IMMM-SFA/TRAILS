@@ -52,7 +52,7 @@ def get_infra_byutil(util_num, infra_num_util_dict, SOL_NUM):
         infra_firstweeks = np.zeros(NUM_RDM)
 
         for rdm in range(NUM_RDM):
-            pathways_filename = 'sol{}_objs_pathways/Pathways_s{}_RDM{}.out'.format(SOL_NUM, SOL_NUM, rdm)
+            pathways_filename = f'sol{SOL_NUM}_objs_pathways/Pathways_s{SOL_NUM}_RDM{rdm}.out'
         
             pathways = pd.read_csv(pathways_filename, index_col=None, delimiter='\t', header=0)
             
@@ -85,7 +85,6 @@ def plot_infra_byutil(util_num, infra_dict, util_infra_dict, infra_num_util_dict
         # Create KDE plot with color-coded fill representing robustness
         infra_name = infra_dict[infra][0]
         nonzero_weeks = util_infra_df[infra]
-        #print(nonzero_weeks)
         sns.kdeplot(x=nonzero_weeks[nonzero_weeks != 0], fill=True, color='green', shade=True, ax=axes[i])
         
         # Set subplot title
@@ -96,7 +95,6 @@ def plot_infra_byutil(util_num, infra_dict, util_infra_dict, infra_num_util_dict
         axes[i].tick_params(axis='y', labelleft=False)
         
         # Remove legend from all but the last subplot
-        #axes[i].get_legend().remove()
         axes[i].set_xlim([0, 2344])
     
     # Remove subplot borders
@@ -104,11 +102,10 @@ def plot_infra_byutil(util_num, infra_dict, util_infra_dict, infra_num_util_dict
         axes[ax].spines['right'].set_visible(False)
         axes[ax].spines['left'].set_visible(False)
         axes[ax].spines['top'].set_visible(False)
-        #if ax == 0:
-            #axes[ax].spines['top'].set_visible(False)
 
     # Add a y-label to the leftmost subplot
     fig.text(0.04, 0.5, util_list[util_num], va='center', rotation='vertical', fontsize=14)
+    
     # Decrease the space between the y-label and subplots
     fig.subplots_adjust(left=0.06)
 
@@ -121,7 +118,7 @@ def plot_infra_byutil(util_num, infra_dict, util_infra_dict, infra_num_util_dict
     axes[len(util_infra_num)-1].set_xlabel('Year of first infrastructure project')
 
     # Show the plot
-    plt.savefig('post_processing/infra_kde_figures/util{}_infra_kde_s{}.png'.format(util_num, SOL_NUM))
+    plt.savefig('infra_kde_figures/util{}_infra_kde_s{}.jpg'.format(util_num, SOL_NUM))
     plt.show()
 
 
@@ -130,7 +127,7 @@ def get_infra_firstweeks(util_num, SOL_NUM):
     infra_firstweeks = np.zeros(NUM_RDM)
 
     for rdm in range(NUM_RDM):
-        pathways_filename = 'sol{}_objs_pathways/Pathways_s{}_RDM{}.out'.format(SOL_NUM, SOL_NUM, rdm)
+        pathways_filename = f'../../../scripts/Phase1/output/sol{SOL_NUM}_objs_pathways/Pathways_s{SOL_NUM}_RDM{rdm}.out'
     
         pathways = pd.read_csv(pathways_filename, index_col=None, delimiter='\t', header=0)
         

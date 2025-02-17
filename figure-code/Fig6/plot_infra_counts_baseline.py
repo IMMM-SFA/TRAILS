@@ -1,4 +1,4 @@
-
+# Load libraries
 import numpy as np
 from matplotlib import pyplot as plt
 import seaborn as sns
@@ -6,10 +6,11 @@ import pandas as pd
 from matplotlib import cm
 from matplotlib.colors import Normalize
 from matplotlib.cm import ScalarMappable
+from matplotlib.colors import BoundaryNorm
 
-from pathways_processing_functions import *
 from custom_colormap import custom_cmap
 
+# Set constants
 NUM_YEARS = 45
 NUM_WEEKS_PER_YEAR = 52
 NUM_WEEKS = 2344
@@ -22,7 +23,10 @@ window_size = 52  # one year rolling window
 util_nums = np.arange(0,6)
 
 util_list = ['OWASA', 'Durham', 'Cary', 'Raleigh', 'Chatham', 'Pittsboro']
+
+# Assign infrastructure to utilities
 '''
+# Actual names of infrastructure associated with their abbreviations and numbers
 infra_dict = {9: 'Little River Reservoir', 10: 'Richland Creek Quarry', 
               11: 'Teer Quarry', 12:'Neuse River Intake',
               13: 'Harnett Intake', 15:'Stone Quarry Exp (L)', 
@@ -57,13 +61,12 @@ infra_raleigh = [infra_dict[key] for key in infra_num_raleigh if key in infra_di
 infra_chatham = [infra_dict[key] for key in infra_num_chatham if key in infra_dict]
 infra_pittsboro = [infra_dict[key] for key in infra_num_pittsboro if key in infra_dict]
 
-pathways_folder = 'sol{}_objs_pathways'.format(SOL_NUM)
-output_folder = 'sol{}_objs_pathways/infra_counts_baseline_byreals'.format(SOL_NUM)   
+pathways_folder = f'../../../scripts/Phase1/output/sol{SOL_NUM}_objs_pathways'
 
+# Counts infrastructure likelihood for each week across all RDMs and realizations for a given utility
 def count_infrastructure_likelihood_row_weeks(util_num, sol_num):
     util_infra_nums = infra_num_util_dict[util_num]
     util_allinfra = [infra_dict[infra_num] for infra_num in util_infra_nums]
-    #print(f'all infrastructure to be built by {util_list[util_num]}: {util_allinfra}')
     
     all_rdm_infra_counts = np.zeros([NUM_WEEKS, len(util_infra_nums)], dtype=int)
     
@@ -73,74 +76,23 @@ def count_infrastructure_likelihood_row_weeks(util_num, sol_num):
         
         util_pathways = pathways[pathways['utility'] == util_num]
 
-        #util_infra_counts_byweek = np.zeros([NUM_WEEKS, len(util_infra_nums)], dtype=int)
-
         for infra in range(len(util_infra_nums)):
             if util_pathways[util_pathways['infra.'] == util_infra_nums[infra]].empty:
                 continue
             else:
                 infra_week_list = util_pathways[util_pathways['infra.'] == util_infra_nums[infra]]['week'].values
-                #if util_infra_nums[infra] == 30:
-                    #print(f'infra {util_infra_nums[infra]} detected in RDM: {rdm}')
                 infra_week = infra_week_list[0]
                 
-                # util_infra_counts_byweek[infra_week, infra] = len(infra_week_list)
                 all_rdm_infra_counts[infra_week, infra] += len(infra_week_list)
-                
-            # get the week in which infrastructure is most often built across all realizations 
-            # for a given DU SOW
-            #all_rdm_median_infra_week[rdm, infra] = np.median(util_infra_counts_byreal[:, infra])
-        
-        # the number in each cell represents the total number of times a utility builds a given infrastructure 
-        # option in a given week across all realizations
-        # output_file = output_folder + '/util{}_rdm{}_counts_byweek.csv'.format(util_num, rdm)
-        # output_file_rdm = output_folder + '/util{}_allRDM_counts_byweek.csv'.format(util_num, rdm)
-        
-        # save each RDM as a csv
-        # util_infra_counts_byweek_df = pd.DataFrame(util_infra_counts_byweek, columns=util_allinfra)
-
-        # probability that a utility builds a given infrastructure option in a given week across all realizations 
-        # and across all RDMs
-        # represents likelihood that an infrastructure option will be triggered in a given week 
-
-        # util_infra_counts_byweek_df.to_csv(output_file, index=False)
-        # all_rdm_median_infra_week_df.to_csv(output_file_rdm, index=False)
     
     # save the probability across all RDMs and realization for a given utility
     all_rdm_infra_counts_df = pd.DataFrame(all_rdm_infra_counts, columns=util_allinfra)
-    #all_rdm_infra_counts_df.to_csv(output_folder + '/util{}_allRDM_counts_byweek.csv'.format(util_num), index=False)
     return all_rdm_infra_counts_df
 
-owasa_infra_counts_df = count_infrastructure_likelihood_row_weeks(0, SOL_NUM)
-durham_infra_counts_df = count_infrastructure_likelihood_row_weeks(1, SOL_NUM)
-cary_infra_counts_df = count_infrastructure_likelihood_row_weeks(2, SOL_NUM)
-raleigh_infra_counts_df = count_infrastructure_likelihood_row_weeks(3, SOL_NUM)
-chatham_infra_counts_df = count_infrastructure_likelihood_row_weeks(4, SOL_NUM)
-pittsboro_infra_counts_df = count_infrastructure_likelihood_row_weeks(5, SOL_NUM)
-
-owasa_infra_counts_rolling_df = (owasa_infra_counts_df.apply(lambda col: 
-                                                            col.rolling(window=window_size).sum(), 
-                                                            axis=0)/(NUM_RDM*NUM_REAL))*100
-durham_infra_counts_rolling_df = (durham_infra_counts_df.apply(lambda col: 
-                                                              col.rolling(window=window_size).sum(), 
-                                                              axis=0)/(NUM_RDM*NUM_REAL))*100
-cary_infra_counts_rolling_df = (cary_infra_counts_df.apply(lambda col: 
-                                                          col.rolling(window=window_size).sum(), 
-                                                          axis=0)/(NUM_RDM*NUM_REAL))*100
-raleigh_infra_counts_rolling_df = (raleigh_infra_counts_df.apply(lambda col: 
-                                                                col.rolling(window=window_size).sum(), 
-                                                                axis=0)/(NUM_RDM*NUM_REAL))*100
-chatham_infra_counts_rolling_df = (chatham_infra_counts_df.apply(lambda col: 
-                                                                col.rolling(window=window_size).sum(), 
-                                                                axis=0)/(NUM_RDM*NUM_REAL))*100
-pittsboro_infra_counts_rolling_df = (pittsboro_infra_counts_df.apply(lambda col: 
-                                                                    col.rolling(window=window_size).sum(), 
-                                                                    axis=0)/(NUM_RDM*NUM_REAL))*100
-
+# Calculate the median week of infrastructure construction across all RDMs and realizations for a given utility
 def count_infrastructure_medians_row_reals(util_num, sol_num):
     util_infra_nums = infra_num_util_dict[util_num]
     util_allinfra = [infra_dict[infra_num] for infra_num in util_infra_nums]
-    #print(f'all infrastructure to be built by {util_list[util_num]}: {util_allinfra}')
     
     all_rdm_median_infra_week = np.zeros([NUM_RDM, len(util_infra_nums)], dtype=int)
     
@@ -166,34 +118,12 @@ def count_infrastructure_medians_row_reals(util_num, sol_num):
             util_infra_counts_byreal_nozeros = util_infra_counts_byreal_infra[util_infra_counts_byreal_infra != 0]
 
             all_rdm_median_infra_week[rdm, infra] = np.median(util_infra_counts_byreal_nozeros)
-            #print(f'median weeks: {np.median(util_infra_counts_byreal_nozeros)}')
-        # the number in each cell represents the total number of times a utility builds a given infrastructure 
-        # option in a given week across all realizations
-        # output_file = output_folder + '/util{}_rdm{}_counts_byweek.csv'.format(util_num, rdm)
-        # output_file_rdm = output_folder + '/util{}_allRDM_counts_byweek.csv'.format(util_num, rdm)
-        
-        # save each RDM as a csv
-        # util_infra_counts_byweek_df = pd.DataFrame(util_infra_counts_byweek, columns=util_allinfra)
-
-        # probability that a utility builds a given infrastructure option in a given week across all realizations 
-        # and across all RDMs
-        # represents likelihood that an infrastructure option will be triggered in a given week 
-
-        #util_infra_counts_byweek_df.to_csv(output_file, index=False)
-        #all_rdm_median_infra_week_df.to_csv(output_file_rdm, index=False)
     
     # save the probability across all RDMs and realization for a given utility
     all_rdm_median_infra_reals_df = pd.DataFrame(all_rdm_median_infra_week, columns=util_allinfra)
-    #all_rdm_median_infra_reals_df.to_csv(output_folder + '/util{}_allRDM_median_infra_reals.csv'.format(util_num), index=False)
     return all_rdm_median_infra_reals_df
 
-owasa_infra_medians_df = count_infrastructure_medians_row_reals(0, SOL_NUM)
-durham_infra_medians_df = count_infrastructure_medians_row_reals(1, SOL_NUM)
-cary_infra_medians_df = count_infrastructure_medians_row_reals(2, SOL_NUM)
-raleigh_infra_medians_df = count_infrastructure_medians_row_reals(3, SOL_NUM)
-chatham_infra_medians_df = count_infrastructure_medians_row_reals(4, SOL_NUM)
-pittsboro_infra_medians_df = count_infrastructure_medians_row_reals(5, SOL_NUM)
-
+# Plots the KDE of infrastructure construction likelihood and the median week of infrastructure construction
 def plot_infra_kde_byutil(util_infra_medians_df, axes, base_color, robustness_oneutil):
     util_infra_names = util_infra_medians_df.columns
 
@@ -229,8 +159,7 @@ def plot_infra_kde_byutil(util_infra_medians_df, axes, base_color, robustness_on
     plt.xticks(np.arange(min(weeks), max(weeks), step=5*52), 
                labels=range(min(years), max(years)+1, 5))
 
-from matplotlib.colors import BoundaryNorm
-
+# Plots the infrastructure likelihood as a horizontally-stacked bar plot
 def plot_infrastructure_likelihood_bars_byweek(util_infra_counts_df, fig, axes, custom_cmap):
     infra_names = util_infra_counts_df.columns
     NUM_WEEKS = util_infra_counts_df.shape[0]
@@ -253,20 +182,17 @@ def plot_infrastructure_likelihood_bars_byweek(util_infra_counts_df, fig, axes, 
     
     # Plotting the stacked bar plot
     for i, infra in enumerate(infra_names):
-        #util_infra_counts_df[infra] = util_infra_counts_norm_df[infra].fillna(0)
         inf_im = util_infra_counts_norm_df[infra].to_numpy() 
 
         # normalize inf_im 
-        #inf_im_norm = (inf_im - infra_min)/(infra_max - infra_min)
-        #inf_im = np.nan_to_num(inf_im)
         inf_im = inf_im.reshape(1, NUM_WEEKS)
 
         # Iterate through each week and add a stack to the bar
         axes[i].imshow(inf_im, cmap=cmap, aspect='auto', alpha=0.85, 
                        vmin=0, vmax=1.0)
         axes[i].set_yticks([])
-        #print(np.max(inf_im))
-        # Add a colorbar
+    
+    # Add a colorbar
     cax = fig.add_axes([0.1, -0.05, 0.80, 0.025])
     cbar = plt.colorbar(sm, orientation='horizontal', pad=0.5, aspect=30, cax=cax)
     cbar.set_label('Fraction of DU SOWs', fontsize=6)
@@ -276,6 +202,7 @@ def plot_infrastructure_likelihood_bars_byweek(util_infra_counts_df, fig, axes, 
     cax.set_xticks(x_ticks)
     cax.set_xticklabels(x_ticks, fontsize=6)
 
+# Plots the KDE of infrastructure construction likelihood and the median week of infrastructure construction
 def plot_infra_kde_likelihood(util_infra_medians_df, util_infra_likelihood_df, util_num, 
                               infra_num, robustness_allutils, base_color):
     util_name = util_list[util_num]
@@ -291,7 +218,6 @@ def plot_infra_kde_likelihood(util_infra_medians_df, util_infra_likelihood_df, u
     fig.set_figheight(int(infra_num)*0.75)
 
     # Remove vertical space between subplots
-    #print("Removing vertical space between subplots")
     plt.subplots_adjust(hspace=0.0)
 
     plot_infrastructure_likelihood_bars_byweek(util_infra_likelihood_df, fig, axes, custom_cmap)
@@ -314,12 +240,45 @@ def plot_infra_kde_likelihood(util_infra_medians_df, util_infra_likelihood_df, u
     axes[util_infra_num-1].set_xticks(np.arange(min(weeks), max(weeks), step=5*52))
     axes[util_infra_num-1].set_xticklabels(range(min(years), max(years)+1, 5), fontsize=10)
     axes[util_infra_num-1].set_xlabel('Simulation year', labelpad=0.3, fontsize=8)
-    #plt.tight_layout()
     plt.suptitle(f'Median and likelihood of first year of infrastructure construction for {util_name}',
                  fontsize=10, y=0.99)
-    #fig.subplots_adjust(top=0.99)
-    plt.savefig(f'infra_kde_likelihood_s{SOL_NUM}_u{util_num}_withbar.pdf', dpi=300, bbox_inches='tight')
-    #plt.show()
+    plt.savefig(f'infra_kde_likelihood_s{SOL_NUM}_u{util_num}_withbar.jpg', dpi=300, bbox_inches='tight')
+
+
+# Begin plotting here
+owasa_infra_counts_df = count_infrastructure_likelihood_row_weeks(0, SOL_NUM)
+durham_infra_counts_df = count_infrastructure_likelihood_row_weeks(1, SOL_NUM)
+cary_infra_counts_df = count_infrastructure_likelihood_row_weeks(2, SOL_NUM)
+raleigh_infra_counts_df = count_infrastructure_likelihood_row_weeks(3, SOL_NUM)
+chatham_infra_counts_df = count_infrastructure_likelihood_row_weeks(4, SOL_NUM)
+pittsboro_infra_counts_df = count_infrastructure_likelihood_row_weeks(5, SOL_NUM)
+
+owasa_infra_counts_rolling_df = (owasa_infra_counts_df.apply(lambda col: 
+                                                            col.rolling(window=window_size).sum(), 
+                                                            axis=0)/(NUM_RDM*NUM_REAL))*100
+durham_infra_counts_rolling_df = (durham_infra_counts_df.apply(lambda col: 
+                                                              col.rolling(window=window_size).sum(), 
+                                                              axis=0)/(NUM_RDM*NUM_REAL))*100
+cary_infra_counts_rolling_df = (cary_infra_counts_df.apply(lambda col: 
+                                                          col.rolling(window=window_size).sum(), 
+                                                          axis=0)/(NUM_RDM*NUM_REAL))*100
+raleigh_infra_counts_rolling_df = (raleigh_infra_counts_df.apply(lambda col: 
+                                                                col.rolling(window=window_size).sum(), 
+                                                                axis=0)/(NUM_RDM*NUM_REAL))*100
+chatham_infra_counts_rolling_df = (chatham_infra_counts_df.apply(lambda col: 
+                                                                col.rolling(window=window_size).sum(), 
+                                                                axis=0)/(NUM_RDM*NUM_REAL))*100
+pittsboro_infra_counts_rolling_df = (pittsboro_infra_counts_df.apply(lambda col: 
+                                                                    col.rolling(window=window_size).sum(), 
+                                                                    axis=0)/(NUM_RDM*NUM_REAL))*100
+
+owasa_infra_medians_df = count_infrastructure_medians_row_reals(0, SOL_NUM)
+durham_infra_medians_df = count_infrastructure_medians_row_reals(1, SOL_NUM)
+cary_infra_medians_df = count_infrastructure_medians_row_reals(2, SOL_NUM)
+raleigh_infra_medians_df = count_infrastructure_medians_row_reals(3, SOL_NUM)
+chatham_infra_medians_df = count_infrastructure_medians_row_reals(4, SOL_NUM)
+pittsboro_infra_medians_df = count_infrastructure_medians_row_reals(5, SOL_NUM)
+
 
 infra_medians_df_toplot = ''
 infra_counts_df_toplot = ''
