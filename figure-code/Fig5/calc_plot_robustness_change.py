@@ -1,3 +1,4 @@
+#%% Import libraries and set constants
 import numpy as np 
 import pandas as pd
 import seaborn as sns
@@ -6,19 +7,12 @@ from matplotlib.gridspec import GridSpec
 
 sns.set_style("white")
 
-utility_names = ['OWASA', 'Durham', 'Cary', 'Raleigh', 'Chatham', 'Pittsboro']
-#util_colors = ['#FF8600', '#B2ABF2', '#F03A47', '#5AE953', '#426B69','#64113F', '#42E2B8']
-util_colors = ['#FF5733', '#2E86C1', '#28B463', '#D4AC0D', '#8E44AD', '#C70039', 'darkgray']
-sol_num = [92, 132, 140]
-sol_names = ['Durham-focused', 'Raleigh-focused', 'Regionally-robust']
-robustness_dict = {}
-robustness_change_dict = {}
-
-sol_num_selected = 0  # 0: Durham-focused, 1: Raleigh-focused, 2: Regionally-robust
-window_size = 52
 NUM_WEEKS = 2344
 NUM_DU = 1000
 
+#%% Define functions
+
+# Calculates the moving average of the robustness values using a user-specified window size
 def robustness_moving_avg(robustness, window_size):
     robust_conv = np.zeros(robustness.shape[0] - window_size + 1)
     for w in range(0, robustness.shape[0] - window_size + 1):
@@ -35,17 +29,15 @@ def calc_change_robustness(robustness, window_size):
 
     return change_robustness
 
+# Calculate the robustness and the change in robustness for a given utility and solution
 def calc_robustness(util_num, sol_num):
-    #satisficing_sol140_util3_new.csv
-    filename = f"output_files/satisficing_sol{sol_num}_util{util_num}.csv"
+    filename = f"../../scripts/Phase2/output/satisficing_sol{sol_num}_util{util_num}.csv"
     satisficing_np = np.loadtxt(filename, delimiter=',')
 
     robustness = np.sum(satisficing_np, axis=0) / NUM_DU
 
     # smooth the data
-    #robustness_conv = np.convolve(robustness, np.ones((window_size,))/window_size, mode='full')
     robustness_conv = robustness_moving_avg(robustness, window_size)
-    #print(f'Convolved Robustness shape: {robustness_conv.shape}')
 
     robustness_dx = calc_change_robustness(robustness_conv, window_size)
     return robustness_conv, robustness_dx
@@ -65,17 +57,17 @@ def plot_robustness_heatmap(robustness_change_df, sol_num_selected):
 
     min_robustness_change = np.min(robustness_change_df.values)
     max_robustness_change = np.max(robustness_change_df.values)
-    min_robustness_change_str = f'{min_robustness_change:.2f}'
-    max_robustness_change_str = f'{max_robustness_change:.2f}'
+    #min_robustness_change_str = f'{min_robustness_change:.2f}'
+    #max_robustness_change_str = f'{max_robustness_change:.2f}'
 
     norm_factor = np.max([np.abs(min_robustness_change), np.abs(max_robustness_change)])
-    robustness_change_norm_df = robustness_change_df / norm_factor
+    #robustness_change_norm_df = robustness_change_df / norm_factor
     # Create the heatmap using a colorblind-friendly diverging colormap
-    #heatmap=sns.heatmap(robustness_change_norm_df.T, cmap='BrBG', center=0, cbar_kws={'label': 'Change in robustness'})
     heatmap=sns.heatmap(robustness_change_lim.T, cmap='BrBG', center=0, cbar_kws={'label': 'Change in robustness'})
 
     heatmap.set_xticks(np.arange(0, NUM_WEEKS-window_size+1, 52*5))  # Set x-ticks every 5 years
     heatmap.set_xticklabels(np.arange(0, 45, 5))  # Set x-tick labels every 5 years
+
     # Add labels and title
     plt.xlabel('Years')
     heatmap.set_ylabel('Utility')
@@ -85,12 +77,11 @@ def plot_robustness_heatmap(robustness_change_df, sol_num_selected):
     # Customize colorbar with yticks
     colorbar = heatmap.collections[0].colorbar
     colorbar.set_ticks([np.min(robustness_change_lim.values), 0, np.max(robustness_change_lim.values)])
-    #colorbar.set_ticklabels([min_robustness_change_str, 0, max_robustness_change_str])
     colorbar.set_ticklabels([-0.2, 0, 0.2])
 
     plt.xticks(rotation=0)
     # Save the plot
-    fig_name = f'figures/sol{s}_robustness_change_heatmap.pdf'
+    fig_name = f'sol{s}_robustness_change_heatmap.jpg'
     plt.savefig(fig_name, dpi=300, bbox_inches='tight')
 
 def plot_robustness_timeseries(robustness_df, critical_periods, sol_num_selected):
@@ -115,7 +106,6 @@ def plot_robustness_timeseries(robustness_df, critical_periods, sol_num_selected
         time = np.arange(0, len(robustness))
         if i != 6:
             ax.plot(robustness, label=util_name, color=util_colors[i], linewidth=2.5)
-            #ax.plot(robustness[::52], time[::52], label=util_name, color=util_colors[i])
         else:
             ax.plot(time[::104], robustness[::104], 'X', label=util_name, color=util_colors[i], linewidth=2, markersize=8)
     
@@ -137,6 +127,19 @@ def plot_robustness_timeseries(robustness_df, critical_periods, sol_num_selected
     fig_name = f'figures/sol{s}_robustness_timeseries_critical.pdf'
     plt.savefig(fig_name, dpi=300, bbox_inches='tight')
 
+#%% Main code
+
+utility_names = ['OWASA', 'Durham', 'Cary', 'Raleigh', 'Chatham', 'Pittsboro']
+util_colors = ['#FF5733', '#2E86C1', '#28B463', '#D4AC0D', '#8E44AD', '#C70039', 'darkgray']
+sol_num = [92, 132, 140]
+sol_names = ['Durham-focused', 'Raleigh-focused', 'Regionally-robust']
+robustness_dict = {}
+robustness_change_dict = {}
+
+sol_num_selected = 0  # 0: Durham-focused, 1: Raleigh-focused, 2: Regionally-robust
+window_size = 52
+
+#%% Calculate robustness and convert it from a dict into a dataframe
 print('Calculating robustness...')
 for i in range(len(utility_names)):
     util_num = i
@@ -149,23 +152,27 @@ for i in range(len(utility_names)):
 # Convert dictionary to DataFrame
 robustness_df = pd.DataFrame(robustness_dict)
 
-#for each column, convolve the robustness
+#%% Calculate robustness and convert it from a dict into a dataframe
+# For each column, convolve the robustness
 robustness_df['Regional'] = robustness_df.min(axis=1)
 robustness_change_df = pd.DataFrame(robustness_change_dict)
 robustness_change_df['Regional'] = calc_change_robustness(robustness_df['Regional'].values, window_size)
 
-# normalize the robustness_change_df
+# Normalize the robustness_change_df
 all_actors = robustness_df.columns
-'''
+
 # save to csv
 print('Saving robustness values to CSV')
 robustness_df.to_csv(f'output_files/robustness_sol{sol_num[sol_num_selected]}.csv')
 robustness_change_df.to_csv(f'output_files/robustness_change_sol{sol_num[sol_num_selected]}.csv')
-'''
+
 print('Plotting the figure...')
-# import the critical periods df
+
+# Import the critical periods df
 critical_periods = pd.read_csv(f'critical_periods/periods_sol{sol_num[sol_num_selected]}.csv', 
                                header=0, index_col=None)
+
+# uncomment to plot the robustness timeseries
 plot_robustness_heatmap(robustness_change_df, sol_num_selected)
 #plot_robustness_timeseries(robustness_df, critical_periods, sol_num_selected)
 
