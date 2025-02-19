@@ -12,4 +12,6 @@ To generate each of the columns in Figures 7 and 8, run the code in the order sh
 | 7 and 8 | `plot_shap_values.py` | Calculates and plots the SHAP bar plots for each individual utility. | `python ./plot_shap_values.py` | Critical period files generated using the code from Figure 6(a and b). |
 
 ### :pushpin: Figure generation outputs
-Running `plot_shap_values.py` will create a new folder inside your current directory called `shap_bar_figures/` that will contain the SHAP bar plots for all your selected solutions at the start, middle and end of the critical robustness conflict periods. 
+Running `plot_shap_values.py` will create a two new folders inside your current directory:
+    - `shap_bar_figures/` contains the SHAP bar plots for all your selected solutions at the start, middle and end of the critical robustness conflict periods. 
+    - `important_SOWs/` contains CSV files of the SOWs that contain the key characteristics determining success (positive) or failure (negative). This will be important for generating Figure 9.

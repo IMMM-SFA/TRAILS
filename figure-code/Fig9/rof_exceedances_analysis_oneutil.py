@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 from itsa_functions import find_input_ranges, plot_itsa_figure, itsa_index_alltimesteps, calc_cf_diff, normalize_inputs
 
 print('Setting up SA analysis...')
@@ -10,17 +11,24 @@ sns.set_style('white')
 NUM_WEEKS = 2344
 NUM_REALS = 1000   # to change
 NUM_RDMS = 1000
+sol_nums = [92, 132, 140]   # to be changed to solutions of your interest
 
-sol_nums = [92, 132, 140]
+# Each solutions start and end of their robustness critical period
+# These are example start and end periods
+# Replace with the actual start and end periods relevant to your analysis
 start_t_arr = [429, 215, 245]
 end_t_arr = [1221, 487, 715]
 window_size = 52
 
+# select solution, utility, and DU SOW of choice
+# also specify if its a positive (optimistic) or negative (pessimistic) SOW
 sol_selected = 2
 util_num = 3
 selected_du = 287
 t = 2
 s = 'p'
+
+# specify number of bins for the input and output variables
 output_bins = 2
 input_bins = 20
 
@@ -81,18 +89,9 @@ du_deets_df = pd.concat(dataframes, ignore_index=True)
 du_rof_df = pd.DataFrame()
 
 # convert to numpy arrays then perform rolling mean and normalize
-#storage_cols = [str(u) + 'st_vol' for u in np.arange(len(util_names))]  # storage for all utilities
 inf_cols = [str(u) + 'st_vol' for u in np.arange(len(util_names))]  # infrastructure for all utilities
-#rdem_cols = [str(u) + 'rest_demand' for u in np.arange(len(util_names))]  # demand for all utilities
 dem_cols = [str(u) + 'proj_dem' for u in np.arange(len(util_names))]  # demand for all utilities
 cap_cols = [str(u) + 'capacity' for u in np.arange(len(util_names))]  # capacity for all utilities
-#unrest_dem = [str(u) + 'unrest_demand' for u in np.arange(len(util_names))]  # demand for all utilities
-
-#obs_dem_cols = [str(u) + 'obs_ann_dem' for u in np.arange(len(util_names))]  # observed demand for all utilities
-#proj_dem_cols = [str(u) + 'proj_dem' for u in np.arange(len(util_names))]  # projected demand for all utilities
-#dem_cols = [str(util_num) + 'proj_dem' for u in np.arange(len(util_names))]  # demand for all utilities
-#rev_cols = [str(u) + 'gross_rev' for u in np.arange(len(util_names))]  # net inflow for all utilities
-#cf_cols= [str(u) + 'cont_fund' for u in np.arange(len(util_names))]  # debt service for all utilities
 
 statevar_cols = inf_cols + dem_cols + cap_cols
 
@@ -106,12 +105,6 @@ du_input_mat = np.zeros((NUM_WEEKS, NUM_REALS, len(statevar_cols)))
 
 for i in range(NUM_REALS):
     du_input_mat[:,i:i+1,:] = du_input_arr[i*NUM_WEEKS:(i+1)*NUM_WEEKS,:].reshape(NUM_WEEKS, 1, len(statevar_cols))
-    '''
-    for u_num in range(len(util_names)):
-        du_input_mat[:,i:i+1,12+u_num] = du_input_mat[:,i:i+1,12+u_num] / du_input_mat[:,i:i+1,18+u_num]
-    '''
-# delete the last six columns of the input matrix
-# du_input_mat = np.delete(du_input_mat, np.s_[18:24], axis=2)
 
 colors = ['#87CEEB', '#6495ED', '#4169E1', '#000080', '#47B5A8', '#008080', 
           '#FFDAB9', '#F28500', '#B7410E', '#662307', '#D08B5A', '#7B3F00',
@@ -119,12 +112,6 @@ colors = ['#87CEEB', '#6495ED', '#4169E1', '#000080', '#47B5A8', '#008080',
 
 # calculate restriction, transfer, and infrastructure trigger threshold exceedances for the utility
 print('Calculating trigger threshold exceedances...')
-#fig = plt.figure(figsize=(12, 3))
-#gs = fig.add_gridspec(1, 3, hspace=0.6, wspace=0.3, height_ratios=[1], width_ratios=[0.3, 0.3, 0.3])
-#ax1 = fig.add_subplot(gs[0, 0])
-#ax2 = fig.add_subplot(gs[0, 1])
-#ax3 = fig.add_subplot(gs[0, 2])
-#axs = [ax1, ax2, ax3]
 
 # plot the short-term ROF
 fig = plt.figure(figsize=(6, 10))
@@ -164,6 +151,7 @@ ax1.axhline(dv_selected[rt_to_plot], color='#C1666B', linestyle='--', label=f'{u
 
 if util_num != 2:
     ax1.axhline(dv_selected[tt_to_plot], color='#03312E', linestyle='--', label=f'{util_names[util_num]} TT', linewidth=2)
+
 # remove right and top spines
 ax1.spines['right'].set_visible(False)
 ax1.spines['top'].set_visible(False)
@@ -175,16 +163,19 @@ ax1.set_title(f'{util_names[util_num]} Short-term ROF exceedances', fontsize=12)
 ax1.set_ylim(0, 1)
 
 ax2.fill_between(np.arange(start_t, end_t+(52*5)), 0, lrof_max[start_t:end_t+(52*5)], label=util_names[util_num], color='gainsboro', alpha=0.7)
-#ax2.plot(np.arange(start_t, end_t), du_deets_df[lrof_to_plot].values[start_t:end_t], color='black', label=util_names[util_num], linewidth=1)
+
 # fill between 0 and the trigger threshold
 ax2.axhline(dv_selected[inf_to_plot], color='#F2C53D', linestyle='--', label=f'{util_names[util_num]}InfT', linewidth=2)
+
 # remove right and top spines
 ax2.spines['right'].set_visible(False)
 ax2.spines['top'].set_visible(False)
 ax2.set_xticklabels(['']*len(np.arange(start_t, end_t+(52*5))))
+
 # label the subplot
 num_years = np.arange(start_t, end_t+(52*5), 52*5)
 num_years_labels = num_years / 52
+
 # round up labels to nearest integer
 num_years_labels = np.ceil(num_years_labels).astype(int)
 
@@ -196,111 +187,7 @@ ax2.set_ylim(0, 1)
 ax2.legend(loc='upper right', fontsize=10, frameon=False)
 ax2.set_title(f'{util_names[util_num]} Long-term ROF exceedances', fontsize=12)
 
+if not os.path.exists('rof_exceedances'):
+    os.makedirs('rof_exceedances')
+    
 plt.savefig(f'rof_exceedances/s{SOL_NUM}_u{util_num}_du{selected_du}_t{t}_{s}.jpg', dpi=300, bbox_inches='tight') 
-
-'''
-fig = plt.figure(figsize=(12, 3))
-gs = fig.add_gridspec(1, 3, hspace=0.6, wspace=0.3, height_ratios=[1], width_ratios=[0.3, 0.3, 0.3])
-ax1 = fig.add_subplot(gs[0, 0])
-ax2 = fig.add_subplot(gs[0, 1])
-ax3 = fig.add_subplot(gs[0, 2])
-axs = [ax1, ax2, ax3]
-
-for output_num in range(len(output_nums)):
-    action_name = output_num_dict[output_num]
-    axs_idx = output_plot_dict[action_name]
-    dv_exceed = rof_exceed_dict[action_name]
-    dv_rof = rof_abbrev_dict[action_name]
-    trigger = trigger_dict[action_name]
-
-    window_size = 52
-
-    if action_name == 'Infrastructure':
-        window_size = 78
-
-    # Adjust the height ratios of the subplots
-    #fig.subplots_adjust(hspace=0.3, wspace=0.3)
-
-    legend_labels = []
-
-    for l in range(len(input_names)):
-        input = plt.Rectangle((0,0),1,1,fc=colors[l], edgecolor='none')
-        legend_labels.append(input)
-
-    #for util_num in range(len(util_names)): 
-    util_to_plot = util_num
-    util_name = util_names[util_num]
-    util_rof = f'{util_num}{dv_rof}'
-    util_exceed = f'{util_num}{dv_exceed}'
-    util_trigger = f'{util_abbrev[util_num]}_{trigger}'
-    #du_abbrevs = dv_abbrev_dict[util_name]
-
-    if util_exceed == '2tt_exceed':
-        continue
-
-    du_rof_df[util_exceed] = du_deets_df[util_rof] - dv_selected[util_trigger]
-    
-    # convert all negative values to 0
-    du_rof_df[du_rof_df <= 0] = 0
-    # convert all positive values to 1
-    du_rof_df[du_rof_df > 0] = 1
-        
-    #output_col = f'{util_num}{rof_abbrev_dict[action_name]}'
-    
-    du_output_arr = du_rof_df[util_exceed].values
-
-    du_output_mat = np.zeros((NUM_WEEKS, NUM_REALS))
-    #du_output_rolling_mat = np.zeros((NUM_WEEKS - window_size + 1, NUM_REALS))
-
-    for i in range(NUM_REALS):  
-        #du_output_mat[:,i:i+1] = du_output_arr[i*NUM_WEEKS:(i+1)*NUM_WEEKS,:].reshape(NUM_WEEKS)
-        du_output_mat[:,i:i+1] = du_output_arr[i*NUM_WEEKS:(i+1)*NUM_WEEKS].reshape(NUM_WEEKS,1)
-        #du_output_rolling_mat[:,i] = np.convolve(du_output_mat[:,i], np.ones(window_size)/window_size, mode='valid')
-        
-        #for s in range(len(statevar_cols)):
-            #du_input_rolling_mat[:,i, s] = np.convolve(du_input_mat[:,i,s], np.ones(window_size)/window_size, mode='valid')
-    
-    print('Calculating ITSA indices...')
-
-    if util_num == 2 and action_name == 'Transfers':
-        continue
-    else:
-        itsa_toplot = itsa_index_alltimesteps(du_input_mat, 
-                                        du_output_mat, 
-                                        input_names, action_name, 
-                                        NUM_WEEKS - window_size + 1, util_num,
-                                        SOL_NUM, selected_du, y_bins=output_bins, x_bins=input_bins)
-            
-        print('Plotting sensitivity indices...')
-        plot_itsa_figure(util_num, itsa_toplot, input_names, action_name, 
-                        window_size, axs[axs_idx], colors, start_t, end_t+(52*5))
-        
-
-        S1_restr, ST_restr =  delta_all_timesteps(input_bounds, 
-                                                du_input_rolling,
-                                                du_output_rolling[:,output_num], 
-                                                input_names, output_names[output_num], 
-                                                NUM_WEEKS - window_size + 1, util_num)
-
-
-        # itsa_toplot = pd.DataFrame(itsa_restr_norm, columns=input_names)
-
-        plot_tvsa_figure(S1_restr, ST_restr, NUM_WEEKS-window_size+1, input_names, output_names, colors,
-                        util_names[util_num], output_names[output_num], window_size)
-        
-        plot_itsa_heatmap(itsa_toplot, NUM_WEEKS-window_size+1, 
-                        input_names, custom_cmap, 
-                        util_names[util_num], output_names[output_num], 
-                        window_size, SOL_NUM, selected_du)
-
-plt.figlegend(legend_labels,\
-                input_names,\
-                loc='lower center', ncol=3, fontsize=8, frameon=False,
-                bbox_to_anchor=(0.5, -0.45), title='State variables')
-plt.setp(legend_labels, alpha=0.8)
-
-plt.suptitle(f"ITSA indices for {util_names[util_num]} in DU {selected_du}", 
-                fontsize=10)
-    
-plt.savefig(f'figures/fillplot_s{SOL_NUM}_du{selected_du}_u{util_num}_{s}_t{t}_2bins.pdf', dpi=300, bbox_inches='tight')
-'''

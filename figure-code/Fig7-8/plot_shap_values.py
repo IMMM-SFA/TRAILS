@@ -17,9 +17,11 @@ NUM_WEEKS = 2344
 NUM_RDM = 1000  # number of DU SOWs
 
 all_util_nums = np.arange(0,6)
-sol_nums = [92, 132, 140]
+sol_nums = [92, 132, 140]   # to be changed to solutions of your interest
 
 # Each solutions start and end of their robustness critical period
+# These are example start and end periods
+# Replace with the actual start and end periods relevant to your analysis
 start_t_arr = [429, 215, 245]
 end_t_arr = [1221, 487, 715]
 sol_selected = 0
@@ -129,6 +131,17 @@ for util_num in range(len(util_list)):
 
     important_sow_values_df = important_sow_values_df.append(pd.Series(sow_idx_pos), ignore_index=True)
     important_sow_values_df = important_sow_values_df.append(pd.Series(sow_idx_neg), ignore_index=True)
+    
+    # make the shap_bar_figures directory if it doesn't exist
+    if not os.path.exists('shap_bar_figures'):
+        os.makedirs('shap_bar_figures')
+
+    if not os.path.exists('important_SOWs'):
+        os.makedirs('important_SOWs')
+                    
+    # save the dataframes
+    important_sow_values_df.to_csv(f'shap_bar_figures/impt_sow_sol{sol_num}_util{util_num}_mean_70_new.csv', index=False, header=['SHAP sign', 't=0', 't=1', 't=2'])
+    important_sow_values_df.to_csv(f'important_SOWs/impt_sow_sol{sol_num}_regional_mean_70_single_sow.csv', index=False, header=['SHAP sign', 't=0', 't=1', 't=2'])
 
     ylabel_pos = 'Increased likelihood\n' + r'of success $\longrightarrow$'
     axs[1][0].set_ylabel(ylabel_pos, rotation=90, size=8)
@@ -139,14 +152,5 @@ for util_num in range(len(util_list)):
     axs[0][1].set_title('Middle of critical period', fontsize=10)
     axs[0][2].set_title('End of critical period', fontsize=10)
 
-    # make the shap_bar_figures directory if it doesn't exist
-    if not os.path.exists('shap_bar_figures'):
-        os.makedirs('shap_bar_figures')
-
     plt.savefig(f'shap_bar_figures/shap_bars_sol{sol_num}_util{util_num}_mean_70_new.pdf', dpi=300, bbox_inches='tight')
-    
-    '''
-    # save the dataframes
-    important_sow_values_df.to_csv(f'shap_bar_figures/impt_sow_sol{sol_num}_util{util_num}_mean_70_new.csv', index=False, header=['SHAP sign', 't=0', 't=1', 't=2'])
-    #important_sow_values_df.to_csv(f'impt_sow_sol{sol_num}_regional_mean_70_single_sow.csv', index=False, header=['SHAP sign', 't=0', 't=1', 't=2'])
-    '''
+
