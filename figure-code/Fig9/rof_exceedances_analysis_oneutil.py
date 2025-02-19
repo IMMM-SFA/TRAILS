@@ -72,7 +72,7 @@ util_abbrev = ['O', 'D', 'C', 'R', 'Ch', 'P']
 
 # Load the utilities' DU SOWs 
 print('Loading the HDF files')
-hdf_folder = f'../sol{SOL_NUM}_hdf_packed/Utilities_s{SOL_NUM}_RDM{selected_du}.h5'
+hdf_folder = f'../../Phase1/sol{SOL_NUM}_hdf_packed/Utilities_s{SOL_NUM}_RDM{selected_du}.h5'
 
 du_deets_hdf = pd.HDFStore(hdf_folder, mode='r')
 
@@ -189,5 +189,5 @@ ax2.set_title(f'{util_names[util_num]} Long-term ROF exceedances', fontsize=12)
 
 if not os.path.exists('rof_exceedances'):
     os.makedirs('rof_exceedances')
-    
+
 plt.savefig(f'rof_exceedances/s{SOL_NUM}_u{util_num}_du{selected_du}_t{t}_{s}.jpg', dpi=300, bbox_inches='tight') 

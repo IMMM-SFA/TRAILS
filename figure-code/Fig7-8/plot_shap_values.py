@@ -47,12 +47,12 @@ colors = ['#E5B137', '#BC6A2C', '#78370E', '#EFA177', '#B5F7E6',
 
 window_size = 52  # one year rolling window
 robustness = np.zeros([1, NUM_WEEKS - window_size + 1], dtype=float)
-du_factors = pd.read_csv('RDM_values_updated.csv', index_col=None)
+du_factors = pd.read_csv('../../scripts/Phase1/RDM_inputs_final_combined_headers.csv', index_col=None)
 du_factor_values = du_factors.values[:NUM_RDM, :]
 du_factor_names = du_factors.columns.values.tolist()
 
 for util_num in range(len(util_list)):
-    satisficing_filename = f'output_files/satisficing_sol{sol_num}_util{util_num}.csv'
+    satisficing_filename = f'../../scripts/Phase2/output/satisficing_sol{sol_num}_util{util_num}.csv'
     satisficing_np = np.loadtxt(satisficing_filename, delimiter=',').astype(int)
     robustness_np = np.sum(satisficing_np, axis=0)/NUM_RDM
 
