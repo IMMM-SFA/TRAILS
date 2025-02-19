@@ -1,6 +1,6 @@
 # Lau et al. (2025) DU Pathways TRAILS
 
-**Demystifying regional water investment pathways under deep uncertainty: Integrating multi-objective reinforcement learning, robustness conflicts, and explainable artificial intelligence**
+**Exploiting multi-objective reinforcement learning and explainable artificial intelligence to navigate robust regional water supply investment pathways.**
 
 Lillian Lau<sup>1\*</sup>, Patrick M. Reed<sup>1</sup>,  and David F. Gold<sup>2</sup>
 
@@ -16,7 +16,7 @@ Urban water utilities are adopting more advanced dynamic and adaptive pathway po
 ## :pencil2: Journal reference
 To cite this paper, please use the following citation _(Note: This work is currently in-prep and does not yet have a formal citation)_
 ```
-Lau, L., Reed, P.M., and Gold, D.F. (2025). Demystifying regional water investment pathways under deep uncertainty: Integrating multi-objective reinforcement learning, robustness conflicts, and explainable artificial intelligence. _In prep_.
+Lau, L., Reed, P.M., and Gold, D.F. (2025). Exploiting multi-objective reinforcement learning and explainable artificial intelligence to navigate robust regional water supply investment pathways. _In prep_.
 ```
 
 ## :black_nib: Code reference
