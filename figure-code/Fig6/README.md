@@ -12,4 +12,7 @@ To generate Figures 6(a and b), (c and d) separately, run the code in the order 
 | 6(a and b) | `plot_robustness_timeseries.py` | Plots the robustness timeseries for each utility and the region as a whole. | `python ./calc_plot_robustness_change.py` | The satisficing CSV files in `scripts/Phase2/output/` |
 | 6(c and d) | `plot_infra_counts_baseline.py` | Plots the infrastructure bar and KDE likelihood plots. | `python ./plot_infra_counts_baseline.py` | The `.out` files in the `scripts/Phase2/output/solXX__objs_pathways/` for Solution XX |
 
+### :pushpin: Figure generation outputs
+If `plot_robustness_timeseries.py` was run correctly, you should see a new `critical_periods/` folder created in your current directory. This folder should contain 2-column CSV files that contain your start and ending weeks of the robustness conflict periods for the region. This will come in handy when generating Figures 7, 8, and 9.
+
 

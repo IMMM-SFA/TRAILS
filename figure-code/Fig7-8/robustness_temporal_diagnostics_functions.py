@@ -116,15 +116,9 @@ def boosted_trees_t(satisficing, all_params, param_names, t):
         shap_most_neg_factor_idx = np.where(mean_shap_values_t_sorted != shap_most_neg_factor)[0]
         shap_most_neg_factor = mean_shap_values_t_sorted[shap_most_neg_factor_idx[0]]
 
-    #print(f'Factor with highest positive SHAP value:', shap_most_pos_factor)
-    #print(f'Factor with highest negative SHAP value:', shap_most_neg_factor)
-
     clf_2factors.fit(all_params[:, factor_influence_sorted[:2]], satisficing_t)
     
     top2factor_values = all_params[:, factor_influence_sorted[:2]]
-
-    #print(f'DU with highest positive SHAP value: DU {max_shap_value_pos_idx}')
-    #print(f'DU with highest negative SHAP value: DU {min_shap_value_neg_idx}')
 
     return clf, clf_2factors, factor_influence_sorted, top2factor_values, feature_importances,\
               shap_values_t, max_shap_value_pos_idx, min_shap_value_neg_idx
@@ -132,8 +126,6 @@ def boosted_trees_t(satisficing, all_params, param_names, t):
 def plot_sd_figures(factor_influence_sorted, top2factor_values, clf_2factors, feature_importances, 
                     shap_pos_idx, shap_neg_idx,
                     all_params, param_names, satisficing, t, ax):
-
-    #util_name = util_list[util_num]
 
     satisficing_t = satisficing[:, t]
 
@@ -172,8 +164,8 @@ def plot_sd_figures(factor_influence_sorted, top2factor_values, clf_2factors, fe
 def find_num_important_factors(mean_shap_values_pos_sorted, mean_shap_values_neg_sorted, epsilon=0.2):
     shap_pos_norm = (mean_shap_values_pos_sorted-np.min(mean_shap_values_pos_sorted)) / (np.max(mean_shap_values_pos_sorted) - np.min(mean_shap_values_pos_sorted))
     num_important_factors_pos = 1
+    
     # epsilon calculation
-    # make sure that the probability of success/failure is 70% 
     p = 0.70
     certainty_eps = np.log(p/(1-p))
     #print('Certainty epsilon:', certainty_eps)
@@ -347,12 +339,14 @@ def plot_mean_shap_bars(shap_values_t, param_names, ax_pos, ax_neg, legend=False
 
     # find highest positive SHAP value for each feature
     mean_shap_values_pos = calc_shap_mean(shap_values_t, sign='pos')
+    
     # normalize the SHAP values
     mean_shap_values_pos_sorted = np.sort(mean_shap_values_pos)[::-1]
     mean_shap_values_pos_idx_sorted  = np.argsort(mean_shap_values_pos)[::-1]
 
     # find highest negative SHAP value for each feature
     mean_shap_values_neg = calc_shap_mean(shap_values_t, sign='neg')
+    
     # normalize the SHAP values
     mean_shap_values_neg_sorted = np.sort(mean_shap_values_neg)
     mean_shap_values_neg_idx_sorted = np.argsort(mean_shap_values_neg)

@@ -4,6 +4,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
+import os
 
 sns.set_style("white")
 
@@ -49,6 +50,50 @@ def calc_robustness(util_num, sol_num):
     robustness_dx = calc_change_robustness(robustness_conv, window_size)
     return robustness_conv, robustness_dx
 
+def find_critical_periods(robustness_change_df, threshold, sol_num_selected):
+    critical_periods = pd.DataFrame(columns=['start', 'end'])
+
+    # check for any values that are less than or equal to the threshold
+    # if they meet the threshold, turn those values to have the same sign 
+    # as the threshold
+    robustness_change_df = robustness_change_df.copy()
+    robustness_change_df[np.abs(robustness_change_df) <= threshold] = threshold + 0.1
+
+    conflict_flags = np.zeros(robustness_change_df.shape)
+
+    for i, row in enumerate (robustness_change_df.values):
+        row_signs = np.sign(row)
+        if not np.all(row_signs == row_signs[0]):
+            conflict_flags[i] = -1
+    
+    start = []
+    end = []
+
+    continuous_conflict = False
+
+    for i, flag in enumerate(conflict_flags):
+        if flag == -1 and not continuous_conflict:
+            # we are beginning a conflict period 
+            start.append(i)
+            continuous_conflict = True
+        elif flag != -1 and continuous_conflict:
+            # we are ending a conflict period 
+            end.append(i-1)
+            continuous_conflict = False
+    # handle the case where the conflict period ends at the last index
+    
+    if continuous_conflict:
+        end.append(len(conflict_flags)-1)
+    
+    critical_periods['start'] = start
+    critical_periods['end'] = end
+
+    # check if the critical periods folder exists, if not create it
+    os.makedirs('critical_periods', exist_ok=True)
+    critical_periods.to_csv(f'critical_periods/periods_sol{sol_num_selected}.csv', index=False)
+
+    return critical_periods
+
 def plot_robustness_timeseries(robustness_df, critical_periods, sol_num_selected):
     sns.set_style("white")
     fig, ax = plt.subplots(1,1, figsize=(12, 2))
@@ -58,8 +103,9 @@ def plot_robustness_timeseries(robustness_df, critical_periods, sol_num_selected
 
     start_idx = critical_periods['start'].values
     end_idx = critical_periods['end'].values
+
     for i in range(len(start_idx)):
-        # remove border
+        # if the critical period is less than 52 weeks, skip
         if end_idx[i] - start_idx[i] <= 52:
             continue
         else:
@@ -107,6 +153,11 @@ for i in range(len(utility_names)):
 
 # Convert dictionary to DataFrame
 robustness_df = pd.DataFrame(robustness_dict)
+robustness_change_df = pd.DataFrame(robustness_change_dict)
+
+# find critical periods 
+threshold = 0.05    # change to desired robustness change threshold
+critical_periods = find_critical_periods(robustness_change_df, threshold, sol_num_selected)
 
 #for each column, convolve the robustness
 robustness_df['Regional'] = robustness_df.min(axis=1)
@@ -118,8 +169,5 @@ all_actors = robustness_df.columns
 
 print('Plotting the figure...')
 # import the critical periods df
-critical_periods = pd.read_csv(f'critical_periods/periods_sol{sol_num[sol_num_selected]}.csv', 
-                               header=0, index_col=None)
-
 plot_robustness_timeseries(robustness_df, critical_periods, sol_num_selected)
 
