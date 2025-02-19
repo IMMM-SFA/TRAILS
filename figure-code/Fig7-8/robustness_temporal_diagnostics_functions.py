@@ -17,7 +17,6 @@ NUM_WEEKS = 2344
 NUM_RDM = 1000  # number of DU SOWs
 
 def calc_robustness(satisficing):
-
     robustness = np.sum(satisficing, axis=0)/NUM_RDM
     return robustness
 
@@ -536,7 +535,6 @@ def boosted_trees_factor_ranking_with_shap_consequential(satisficing, all_params
         print(f'Robustness does not change at a consequential rate for {util_list[util_num]}')
         return None
     
-    #factor_ranking = np.zeros([NUM_WEEKS - window_size + 1, len(param_names)], dtype=float)
     shap_values_pos = np.zeros([NUM_WEEKS - window_size + 1, len(param_names)], dtype=float)
     shap_values_neg = np.zeros([NUM_WEEKS - window_size + 1, len(param_names)], dtype=float)
     feature_values_pos = np.zeros([NUM_WEEKS - window_size + 1, len(param_names)], dtype=float)
@@ -561,22 +559,14 @@ def boosted_trees_factor_ranking_with_shap_consequential(satisficing, all_params
             else:
                 clf.fit(all_params, satisficing_t)
 
-                #factor_ranking_t = deepcopy(clf.feature_importances_)
-                #factor_ranking[t, :] = factor_ranking_t
-
-                #shap_values_t = do_the_shap(clf, all_params)
                 max_shap_values_pos, max_shap_values_neg, \
                     max_feature_values_neg, max_feature_values_pos = do_the_shap(clf, all_params, param_names)
                 
-                #shap_values_t_shifted = shap_values_t + np.abs(np.min(shap_values_t, axis=0))
-                #shap_values_mean_t = np.mean(shap_values_t_shifted, axis=0)
-
-                #shap_values[t, :] = shap_values_mean_t - np.abs(np.min(shap_values_t, axis=0))
                 shap_values_pos[t, :] = max_shap_values_pos
                 shap_values_neg[t, :] = max_shap_values_neg
                 feature_values_pos[t, :] = max_feature_values_pos
                 feature_values_neg[t, :] = max_feature_values_neg
-    #factor_ranking_df = pd.DataFrame(factor_ranking, columns=param_names, index=None)
+    
     shap_values_pos_df = pd.DataFrame(shap_values_pos, columns=param_names, index=None)
     shap_values_neg_df = pd.DataFrame(shap_values_neg, columns=param_names, index=None)
     feature_values_pos_df = pd.DataFrame(feature_values_pos, columns=param_names, index=None)
@@ -592,7 +582,6 @@ def boosted_trees_factor_ranking_with_shap_consequential(satisficing, all_params
     feature_values_neg_filename = f'output_files/feature_values_neg_s{sol_num}_u{util_num}_{period_name}.csv'
     feature_values_neg_df.to_csv(feature_values_neg_filename)
 
-    #shape_values_df.to_csv(shap_values_filename)
     shap_list = [shap_values_pos_df, shap_values_neg_df, feature_values_pos_df, feature_values_neg_df]
     return shap_list
 
@@ -619,9 +608,6 @@ def plot_timevarying_gbr_shap(shap_values_list, periods_df,
     shap_pos_values = np.where(np.abs(shap_pos_values) < 0.5, 0, shap_pos_values)
     shap_neg_values = np.where(np.abs(shap_neg_values) < 0.5, 0, shap_neg_values)
 
-    #factor_ranking_values = factor_ranking_df.values
-    #shap_values = shap_values_df.values
-
     fig, ax = plt.subplots(1, 1, sharex=True)
     fig.set_figheight(4)
     fig.set_figwidth(12)
@@ -631,8 +617,6 @@ def plot_timevarying_gbr_shap(shap_values_list, periods_df,
     ymax = 1.0
     ymin = 0.0
     ymin_shap = -1.0
-    #plot factor ranking
-    #print('Plotting time-varying factor contributions...')
     
     y_base = np.zeros(shap_pos_df.shape[0], dtype=float)
     y_base_neg = np.zeros(shap_neg_df.shape[0], dtype=float)
@@ -655,8 +639,7 @@ def plot_timevarying_gbr_shap(shap_values_list, periods_df,
 
         y_pos[y_pos_idx] = shap_pos_values[y_pos_idx,i]
         y_pos = y_pos + y_base
-        # find current max y-axis value
-        #ymax = max(ymax,np.max(y_pos))
+
         ax.fill_between(x_values_pos, y_base, y_pos, where=y_pos>y_base, color=factor_colors[i], 
                         alpha=1.0, label=factor_names[i])
         
@@ -667,8 +650,6 @@ def plot_timevarying_gbr_shap(shap_values_list, periods_df,
         y_neg[y_neg_idx] = shap_neg_values[y_neg_idx,i]
         y_neg = y_neg + y_base_neg
         
-        # find current min y-axis value
-        #ymin = min(ymin,np.min(y_neg))
         ax.fill_between(x_values_pos, y_base_neg, y_neg, where=y_neg<y_base_neg, color=factor_colors[i], 
                         alpha=1.0, label=factor_names[i])
 
@@ -676,11 +657,11 @@ def plot_timevarying_gbr_shap(shap_values_list, periods_df,
 
     # insert a horizontal dotted line
     ax.axhline(y=0, color='black', linestyle='--', linewidth=0.5)
+    
     # place text immediately above the line on the right hand size
     ax.text(1.0, 0.55, 'No influence on prediction', color='black', fontsize=10, 
                 ha='right', va='center', transform=ax.transAxes)
 
-    #ax.set_ylim(ymin,ymax)
     ax.set_xlim(0, shap_pos_values.shape[0])
     ax.tick_params(axis='both', which='major', labelsize=10)
     ax.set_ylabel(r'$\longleftarrow$ Drives failure   Drives success $\longrightarrow$', fontsize=8)

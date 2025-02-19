@@ -48,9 +48,6 @@ du_factor_values = du_factors.values[:NUM_RDM, :]
 du_factor_names = du_factors.columns.values.tolist()
 
 for util_num in range(len(util_list)):
-#for util_num in range(0,1):
-    #print(f'Importing satisficing, robustness, and period data for regional in solution {sol_num}')
-    #satisficing_filename = f'output_files/satisficing_sol{sol_num}_regional.csv'
     satisficing_filename = f'output_files/satisficing_sol{sol_num}_util{util_num}.csv'
     satisficing_np = np.loadtxt(satisficing_filename, delimiter=',').astype(int)
     robustness_np = np.sum(satisficing_np, axis=0)/NUM_RDM
@@ -92,7 +89,7 @@ for util_num in range(len(util_list)):
             clf, clf_2factors, factor_influence_sorted, top2factor_values, feature_importances,\
                         shap_values_t, shap_pos_idx, shap_neg_idx = boosted_trees_t(satisficing_np, du_factor_values, rdm_headers, times[t])
             
-            #save the dataframes
+            # save the dataframes
             sow_pos_idx_t, sow_neg_idx_t = find_sows(shap_values_t, du_factor_values, t)
 
             thres_feature_values_pos, thres_feature_values_neg, max_shap_values, min_shap_values, \
@@ -102,9 +99,6 @@ for util_num in range(len(util_list)):
             threshold_feature_values_neg = du_factor_values[sow_neg_idx_t, :]
 
             plot_mean_shap_bars(shap_values_t, rdm_headers, axs[1][t], axs[2][t], legend=False)
-
-            #shap_values_pos_toplot = shap_values_t[shap_pos_idx, :]
-            #shap_values_neg_toplot = shap_values_t[shap_neg_idx, :]
 
             plot_threshold_heatmap(du_factor_values, threshold_feature_values_pos, threshold_feature_values_neg, 
                                 mean_shap_values_pos_idx_sorted.flatten(), mean_shap_values_neg_idx_sorted.flatten(), 
@@ -143,8 +137,12 @@ for util_num in range(len(util_list)):
     axs[0][1].set_title('Middle of critical period', fontsize=10)
     axs[0][2].set_title('End of critical period', fontsize=10)
 
+    # make the shap_bar_figures directory if it doesn't exist
+    if not os.path.exists('shap_bar_figures'):
+        os.makedirs('shap_bar_figures')
+
     plt.savefig(f'shap_bar_figures/shap_bars_sol{sol_num}_util{util_num}_mean_70_new.pdf', dpi=300, bbox_inches='tight')
-    #plt.savefig(f'shap_bars_sol{sol_num}_regional_mean_70_single_sow.jpg', dpi=300, bbox_inches='tight')
+    
     '''
     # save the dataframes
     important_sow_values_df.to_csv(f'shap_bar_figures/impt_sow_sol{sol_num}_util{util_num}_mean_70_new.csv', index=False, header=['SHAP sign', 't=0', 't=1', 't=2'])

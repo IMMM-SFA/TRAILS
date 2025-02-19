@@ -42,10 +42,7 @@ for util_num in all_util_nums:
 
     # import satisficing data
     satisficing_filename = f'output_files/satisficing_sol{sol_num}_util{util_num}.csv'
-    #satisficing_filename = f'satisficing_sol{sol_num}_regional_updated.csv'
-    #robustness_filename = f'output_files/robustness_sol{sol_num}.csv'
     periods_filename = f'consequential_periods/periods_sol{sol_num}_u{util_num}_new.csv'
-    #periods_filename = f'consequential_periods/periods_sol{sol_num}_all_new.csv'
     crit_periods_filename = f'critical_periods/periods_sol{sol_num}.csv'
     satisficing_np = np.loadtxt(satisficing_filename, delimiter=',').astype(int)[:, window_size:]
     
@@ -67,8 +64,3 @@ for util_num in all_util_nums:
         shap_list = boosted_trees_factor_ranking_with_shap_consequential(satisficing_np, all_params[:NUM_RDM,:], 
                                                                         param_names, period_selected, window_size, sol_num, 
                                                                         util_list, util_num, lag=0, period_name = 'conseq')
-    '''
-    factor_ranking_df = boosted_trees_factor_ranking_consequential(satisficing_np, all_params[:NUM_RDM,:], 
-                                                                param_names, periods_df, window_size, sol_num, 
-                                                                util_list, util_num, lag=52)
-    '''
