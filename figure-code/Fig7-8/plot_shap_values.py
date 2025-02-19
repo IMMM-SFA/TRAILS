@@ -19,12 +19,7 @@ NUM_RDM = 1000  # number of DU SOWs
 all_util_nums = np.arange(0,6)
 sol_nums = [92, 132, 140]
 
-<<<<<<< HEAD
-# example start and end critical period weeks for each solution
-# change to the actual critical period weeks found with your own data
-=======
 # Each solutions start and end of their robustness critical period
->>>>>>> ba5fa9c8e1569999f57f3910a60227514f4069b1
 start_t_arr = [429, 215, 245]
 end_t_arr = [1221, 487, 715]
 sol_selected = 0

@@ -59,7 +59,7 @@ def find_critical_periods(robustness_change_df, threshold, sol_num_selected):
     robustness_change_df = robustness_change_df.copy()
     robustness_change_df[np.abs(robustness_change_df) <= threshold] = threshold + 0.1
 
-    conflict_flags = np.zeros(robustness_change_df.shape)
+    conflict_flags = np.zeros(robustness_change_df.shape[0])
 
     for i, row in enumerate (robustness_change_df.values):
         row_signs = np.sign(row)
