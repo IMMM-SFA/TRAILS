@@ -29,6 +29,17 @@ def calc_change_robustness(robustness, window_size):
 
     return change_robustness
 
+# Identify the start and end of critical periods
+def find_consequential_periods(robustness_change, threshold):
+    critical_periods = pd.DataFrame(columns=['start', 'end'])
+    start = 0
+    end = 0
+
+    # if the signs of robsutness change are the same, then the period is not critical
+    # otherwise, it is critical
+    for u in range(len(robustness_change))
+
+
 # Calculate the robustness and the change in robustness for a given utility and solution
 def calc_robustness(util_num, sol_num):
     filename = f"../../scripts/Phase2/output/satisficing_sol{sol_num}_util{util_num}.csv"
@@ -168,11 +179,6 @@ robustness_change_df.to_csv(f'output_files/robustness_change_sol{sol_num[sol_num
 
 print('Plotting the figure...')
 
-# Import the critical periods df
-critical_periods = pd.read_csv(f'critical_periods/periods_sol{sol_num[sol_num_selected]}.csv', 
-                               header=0, index_col=None)
-
 # uncomment to plot the robustness timeseries
 plot_robustness_heatmap(robustness_change_df, sol_num_selected)
-#plot_robustness_timeseries(robustness_df, critical_periods, sol_num_selected)
 
