@@ -29,10 +29,11 @@ Gold, D.G., Reed, P.M., Gorelick, D.E., and Characklis, G.W. (2023). Advancing R
 ## :computer: Contributing software
 | Model | Version | Repository Link | DOI |
 |-------|---------|-----------------|-----|
-| WaterPaths | v1.0 | https://github.com/bernardoct/WaterPaths | 10.1016/j.envsoft.2020.104772 |
+| HDF5 for Python | v3.12.1 | https://github.com/mwaskom/seaborn | 10.21105/joss.03021 |
+| Seaborn | v0.13.2 | https://github.com/bernardoct/WaterPaths | 10.1016/j.envsoft.2020.104772 |
 | SHAP | v0.46.0 | https://shap.readthedocs.io/en/stable/ | https://doi.org/10.1038/s42256-019-0138-9 |
 | Scikit-Learn | v1.6.1 | https://scikit-learn.org/stable/ | https://doi.org/10.1038/s42256-019-0138-9 |
-| HDF5 for Python | v3.12.1 | https://docs.h5py.org/en/stable/index.html |  |
+| WaterPaths | v1.0 | https://github.com/bernardoct/WaterPaths | 10.1016/j.envsoft.2020.104772 |
 
 ## :file_folder: Reproduce my experiment
 Clone this repository to get access to code scripts used to generate risk of failure (ROF) tables, run DU Re-Evaluation, and reproduce the figures. 
@@ -49,5 +50,5 @@ Navigate into each folder (listed below) to refer to their detailed README files
 3. Follow the guidelines detailed in the README files of the `scripts` directory to re-create this experiment.
 
 ## :bar_chart: Reproduce my figures
-Use the scripts found in the `figures` directory to reproduce the figures used in this publication. Follow the guidelines detailed in the README file of the `figrue-code` directory.
+Use the scripts found in the `figures` directory to reproduce the figures used in this publication. Follow the guidelines detailed in the README file of the `figure-code` directory.
 
