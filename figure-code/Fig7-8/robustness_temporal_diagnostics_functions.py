@@ -547,7 +547,6 @@ def boosted_trees_factor_ranking_with_shap_consequential(satisficing, all_params
 
     for row in range(periods_df.shape[0]):
         start_t = max(periods_df.iloc[row, 0]-lag, 0)
-        #print('start_t:', start_t)
         end_t = periods_df.iloc[row, 1]
 
         print(f'Currently in the period {row} from {start_t} to {end_t}...')

@@ -18,6 +18,8 @@ NUM_RDM = 1000  # number of DU SOWs
 
 all_util_nums = np.arange(0,6)
 sol_nums = [92, 132, 140]
+
+# Each solutions start and end of their robustness critical period
 start_t_arr = [429, 215, 245]
 end_t_arr = [1221, 487, 715]
 sol_selected = 0
