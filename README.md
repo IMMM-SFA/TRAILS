@@ -24,7 +24,7 @@ Lau, L., Reed, P.M., and Gold, D.F. (2025). Exploiting multi-objective reinforce
 ### Input data
 Detailed information on generating the hydroclimatic realizations used in this experiment can be found in the GitHub repository linked to the following paper:
 
-Gold, D.G., Reed, P.M., Gorelick, D.E., and Characklis, G.W. (2023). Advancing Regional Water Supply Management and Infrastructure Investment Pathways That Are Equitable, Robust, Adaptive, and Cooperatively Stable. Water Resources Research. https://doi.org/10.1029/2022WR033671. [GitHub Repository here](https://github.com/davidfgold/DUPathwaysERAS)
+Gold, D.G., Reed, P.M., Gorelick, D.E., and Characklis, G.W. (2023). Advancing Regional Water Supply Management and Infrastructure Investment Pathways That Are Equitable, Robust, Adaptive, and Cooperatively Stable. Water Resources Research. doi.org/10.1029/2022WR033671. [GitHub Repository here](https://github.com/davidfgold/DUPathwaysERAS)
 
 ## :computer: Contributing software
 | Model | Version | Repository Link | DOI |
@@ -40,15 +40,17 @@ Clone this repository to get access to code scripts used to generate risk of fai
 Navigate into each folder (listed below) to refer to their detailed README files that provide step-by-step guidelines on how to navigate and execute their respective scripts.
 
 ### What each folder contains 
-- `figure-code`: Contains the code required to generate most of the figures found in `figures`.
-- `figures`: Contains all the figures that can be found in the paper.
-- `scripts`: Contains all code and guidelines required to perform a smaller replication of the full experiment. The subfolders in this directory are labeled in the order of which they should be opened and attempted. 
+- [`figure-code`](https://github.com/lbl59/TRAILS/tree/main/figure-code): Contains the code required to generate most of the figures found in `figures`.
+- [`figures`](https://github.com/lbl59/TRAILS/tree/main/figures): Contains all the figures that can be found in the paper.
+- [`scripts`](https://github.com/lbl59/TRAILS/tree/main/scripts): Contains all code and guidelines required to perform a smaller replication of the full experiment. The subfolders in this directory are labeled in the order of which they should be opened and attempted. 
 
 ### Prerequisites
 1. Install the software components required to conduct the experiment from [contributing modeling software](#contributing-modeling-software)
 2. Download and install the supporting [input data](#input-data) required to conduct the experiment
-3. Follow the guidelines detailed in the README files of the `scripts` directory to re-create this experiment.
+3. Follow the guidelines detailed in the README files of the `scripts` directory [here](https://github.com/lbl59/TRAILS/tree/main/scripts) to re-create this experiment.
 
 ## :bar_chart: Reproduce my figures
-Use the scripts found in the `figures` directory to reproduce the figures used in this publication. Follow the guidelines detailed in the README file of the `figure-code` directory.
+Use the files found in the `figures` directory to reproduce the figures used in this publication. Follow the guidelines detailed in the README file of the `figure-code` directory.
+
+**Note**: Please complete the Phases listed in the [`scripts` folder ](https://github.com/lbl59/TRAILS/tree/main/scripts) prior to reproducing the figures.
 
