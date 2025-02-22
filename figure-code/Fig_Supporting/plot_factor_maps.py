@@ -58,7 +58,7 @@ fig = plt.figure(figsize=(12, 20))
 gs = gridspec.GridSpec(6, 3, height_ratios=[1, 1, 1, 1, 1, 1])
 
 # adjust spaceing between the plots
-plt.subplots_adjust(wspace=0.2, hspace=0.8)
+plt.subplots_adjust(wspace=0.3, hspace=0.3)
 
 # Create subplots using the GridSpec
 axs = []
@@ -69,12 +69,6 @@ for row in range(len(util_list)):
         ax.set_title(f'Row {row + 1}, Col {col + 1}')
         axs_sub.append(ax)
     axs.append(axs_sub)
-
-# adjust the space between the plots
-plt.subplots_adjust(wspace=0.3, hspace=0.3)
-
-# dataframe of important SOW values 
-important_sow_values_df = pd.DataFrame()
 
 # begin plotting each facto map
 for util_num in range(len(util_list)):
