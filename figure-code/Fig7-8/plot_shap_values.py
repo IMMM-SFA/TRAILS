@@ -152,5 +152,5 @@ for util_num in range(len(util_list)):
     axs[0][1].set_title('Middle of critical period', fontsize=10)
     axs[0][2].set_title('End of critical period', fontsize=10)
 
-    plt.savefig(f'shap_bar_figures/shap_bars_sol{sol_num}_util{util_num}_mean_70_new.pdf', dpi=300, bbox_inches='tight')
+    plt.savefig(f'shap_bar_figures/shap_bars_sol{sol_num}_util{util_num}_mean_70_new.png', dpi=300, bbox_inches='tight')
 
