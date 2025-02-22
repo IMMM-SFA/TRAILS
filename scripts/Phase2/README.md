@@ -6,6 +6,8 @@ This directory contains the input files and scripts to calculate the time-varyin
 
 ### :open_file_folder: Folder contents
 
+Prior to beginning Phase 2, create a `tv_objs/` folder and `output/` folder in this directory. The table below summarizes what each folder will contain.
+
 | Subfolder | Description |
 | --- | --- |
 | `tv_objs/` | Will store all the performance objectives for each of your utilities once the code is run. |

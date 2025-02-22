@@ -52,5 +52,5 @@ Navigate into each folder (listed below) to refer to their detailed README files
 ## :bar_chart: Reproduce my figures
 Use the files found in the `figures` directory to reproduce the figures used in this publication. Follow the guidelines detailed in the README file of the `figure-code` directory.
 
-**Note**: Please complete the Phases listed in the [`scripts` folder ](https://github.com/lbl59/TRAILS/tree/main/scripts) prior to reproducing the figures.
+**Note**: Please complete the Phases listed in the `scripts` folder prior to reproducing the figures.
 

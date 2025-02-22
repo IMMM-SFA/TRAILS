@@ -44,6 +44,7 @@ This directory contains the input files and scripts to perform the DU Re-Evaluat
     Once this step has been completed, you will find that an `output/` folder has been created in the  containing information on your utilities (`Utilities_*.csv`), drought mitigation policies (`Policies_*.csv`) and water source expansion (`WaterSource_*.csv`) in the `output/1/pwl/` folder. These files are very large - and that's normal! You will also find the performance objectives `.csv` and pathways `.out` files in this new folder.
 
 4. **Organizing your performance objectives' pathways files**
+
     For ease of use further into our replication process, you will want to create a folder called `solXX__objs_pathways/` in the `output/`  folder that has just been created. Replace XX with the number of the solution that you have selected. Then, move all your performance objectives `.csv` and pathways `.out` files into the `solXX__objs_pathways/` folder.
 
 5. **Converting your CSV files to HDF5**
