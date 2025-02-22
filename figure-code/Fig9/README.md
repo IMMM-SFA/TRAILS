@@ -15,5 +15,7 @@ To generate each of the columns in Figure 9, run the code in the order shown in 
 | NA | `rof_exceedances_analysis_oneutil.py` | Calculates and plots the ITSA plots for each utility at the start, middle and end of each critical period. | NA | CSV files `../Fig6/critical_periods/` and `../Fig7-8/important_SOWs/`. |
 | Figure 9 | `plot_itsa_contributions.sh` | Submits the `rof_exceedances_analysis_oneutil.py`. | `sbatch ./plot_itsa_contributions.sh` | NA |
 
+The above code scripts also plots `FigSI_itsaRR.jpg` in the `figures/supporting/` folder found [here](https://github.com/lbl59/TRAILS/tree/main/figures/supporting).
+
 ### :pushpin: Figure generation outputs
 If `rof_exceedances_analysis_oneutil.py` was run correctly when submitting it using `plot_itsa_contributions.sh`, a folder called `rof_exceedances/` should be created in your current directory. This folder stores the ITSA plots for each utility for your selected solution.
