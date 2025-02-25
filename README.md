@@ -24,13 +24,13 @@ Lau, L., Reed, P.M., and Gold, D.F. (2025). Exploiting multi-objective reinforce
 ### Input data
 Detailed information on generating the hydroclimatic realizations used in this experiment can be found in the GitHub repository linked to the following paper:
 
-Gold, D.G., Reed, P.M., Gorelick, D.E., and Characklis, G.W. (2023). Advancing Regional Water Supply Management and Infrastructure Investment Pathways That Are Equitable, Robust, Adaptive, and Cooperatively Stable. Water Resources Research. doi.org/10.1029/2022WR033671. [GitHub Repository here](https://github.com/davidfgold/DUPathwaysERAS)
+*Gold, D.G., Reed, P.M., Gorelick, D.E., and Characklis, G.W. (2023). Advancing Regional Water Supply Management and Infrastructure Investment Pathways That Are Equitable, Robust, Adaptive, and Cooperatively Stable. Water Resources Research. doi.org/10.1029/2022WR033671. [GitHub Repository here](https://github.com/davidfgold/DUPathwaysERAS)*
 
 ## :computer: Contributing software
 | Model | Version | Repository Link | DOI |
 |-------|---------|-----------------|-----|
-| HDF5 for Python | v3.12.1 | https://github.com/mwaskom/seaborn | 10.21105/joss.03021 |
-| Seaborn | v0.13.2 | https://github.com/bernardoct/WaterPaths | 10.1016/j.envsoft.2020.104772 |
+| HDF5 for Python | v3.12.1 | https://github.com/h5py/h5py | NA |
+| Seaborn | v0.13.2 | https://github.com/mwaskom/seaborn | 10.21105/joss.03021 |
 | SHAP | v0.46.0 | https://shap.readthedocs.io/en/stable/ | https://doi.org/10.1038/s42256-019-0138-9 |
 | Scikit-Learn | v1.6.1 | https://scikit-learn.org/stable/ | https://doi.org/10.1038/s42256-019-0138-9 |
 | WaterPaths | v1.0 | https://github.com/bernardoct/WaterPaths | 10.1016/j.envsoft.2020.104772 |
