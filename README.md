@@ -26,6 +26,9 @@ Detailed information on generating the hydroclimatic realizations used in this e
 
 *Gold, D.G., Reed, P.M., Gorelick, D.E., and Characklis, G.W. (2023). Advancing Regional Water Supply Management and Infrastructure Investment Pathways That Are Equitable, Robust, Adaptive, and Cooperatively Stable. Water Resources Research. doi.org/10.1029/2022WR033671. [GitHub Repository here](https://github.com/davidfgold/DUPathwaysERAS)*
 
+### Output data
+A subset of the output data containing the values needed to calculate time-varying performance, robustness, and generate infrastructure pathways can be found at this MSDLive data repository(insert link here). 
+
 ## :computer: Contributing software
 | Model | Version | Repository Link | DOI |
 |-------|---------|-----------------|-----|
@@ -40,11 +43,10 @@ Clone this repository to get access to code scripts used to generate risk of fai
 Navigate into each folder (listed below) to refer to their detailed README files that provide step-by-step guidelines on how to navigate and execute their respective scripts.
 
 ### What each folder contains 
-**Note**: This is not the order in which the contents of the folders should be run. 
 
-- [`figure-code`](https://github.com/lbl59/TRAILS/tree/main/figure-code): Contains the code required to generate most of the figures found in `figures`.
-- [`figures`](https://github.com/lbl59/TRAILS/tree/main/figures): Contains all the figures that can be found in the paper.
-- [`scripts`](https://github.com/lbl59/TRAILS/tree/main/scripts): Contains all code and guidelines required to perform a smaller replication of the full experiment. The subfolders in this directory are labeled in the order of which they should be opened and attempted. 
+1. [`scripts`](https://github.com/lbl59/TRAILS/tree/main/scripts): Contains all code and guidelines required to perform a smaller replication of the full experiment. The subfolders in this directory are labeled in the order of which they should be opened and attempted. 
+2. [`figure-code`](https://github.com/lbl59/TRAILS/tree/main/figure-code): Contains the code required to generate most of the figures found in `figures`.
+3. [`figures`](https://github.com/lbl59/TRAILS/tree/main/figures): Contains all the figures that can be found in the paper.
 
 ### Prerequisites
 1. Install the software components required to conduct the experiment from [contributing modeling software](#contributing-modeling-software)
