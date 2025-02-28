@@ -1,6 +1,6 @@
 ## Re-evaluating a selected pathway policy.
 
-This directory contains the input files and scripts to perform the DU Re-Evaluation of a selected pathway policy (referred to as a Solution from hereon out). In this example we will be selecting **Solution 140**, which corresponds to the Regionally Robust (RR) pathway policy shown in the paper. This subdirectory provides the scripts necessary to replicate the DU Re-Evaluation of Solution 140 under a subset of hydroclimatic realizations and DU factors.
+This directory contains the input files and scripts to perform the DU Re-Evaluation of a selected pathway policy (referred to as a Solution from hereon out). In this example we will be selecting **Solution 132**, which corresponds to the Regionally Robust (RR) pathway policy shown in the paper. This subdirectory provides the scripts necessary to replicate the DU Re-Evaluation of Solution 132 under a subset of hydroclimatic realizations and DU factors.
 
 :exclamation: **IMPORTANT** :exclamation: Using a Linux interface and a HPC resource is highly recommended for completing the following steps. It is also highly recommended to familiarize yourself with the scripts provided prior to attempting the following steps.
 
@@ -9,7 +9,7 @@ This directory contains the input files and scripts to perform the DU Re-Evaluat
 | Subfolder | Description |
 | --- | --- |
 | `logs/` | Will store all the `.out` and `.err` files that store any output or error messages generated while running your scripts. |
-| `output/` | Will store all the CSV output files resulting from DU Re-Evaluation. |
+| `output/` | Will store all the CSV output files resulting from DU Re-Evaluation. Find a sample of the CSV files at the [MSDLive data repository here](10.57931/2524573). |
 | `rof_tables_reeval/` | Will store all the ROF tables generated for DU Re-Evaluation. |
 | `src/` | Contains all the source code needed to compile and run WaterPaths. |
 | `TestFiles/` | Contains all the input files required for WaterPaths to run. |

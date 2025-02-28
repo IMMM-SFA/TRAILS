@@ -31,7 +31,7 @@ DATA_DIR = "/scratch/lbl59/DUPathwaysERAS/code/reevaluation/"
 SOLS_FILE_NAME = "refset_DVs.csv"   
 
 # change this number to reflect current solution number
-SOL_NUM = 140   
+SOL_NUM = 132
 
 for i in range(N_RDMS_PER_TASK):
     current_RDM = rank + (N_TASKS * i)

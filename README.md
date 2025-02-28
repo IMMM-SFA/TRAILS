@@ -27,7 +27,10 @@ Detailed information on generating the hydroclimatic realizations used in this e
 *Gold, D.G., Reed, P.M., Gorelick, D.E., and Characklis, G.W. (2023). Advancing Regional Water Supply Management and Infrastructure Investment Pathways That Are Equitable, Robust, Adaptive, and Cooperatively Stable. Water Resources Research. doi.org/10.1029/2022WR033671. [GitHub Repository here](https://github.com/davidfgold/DUPathwaysERAS)*
 
 ### Output data
-A subset of the output data containing the values needed to calculate time-varying performance, robustness, and generate infrastructure pathways can be found at this MSDLive data repository(insert link here). 
+A subset of the output data containing the values needed to calculate time-varying performance, robustness, and generate infrastructure pathways can be found at this [MSDLive data repository](10.57931/2524573). 
+The data can be cited as follows:
+
+*Lau, L.B., Reed, P.M., and Gold, D.F. (2025). TRAILS Output Files. MSD-Live. 10.57931/2524573.*
 
 ## :computer: Contributing software
 | Model | Version | Repository Link | DOI |

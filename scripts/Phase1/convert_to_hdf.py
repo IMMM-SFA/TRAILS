@@ -8,7 +8,7 @@ Change these values to desired number of DU SOWs, realizations, and solution num
 '''
 NUM_RDM = 10
 NUM_REAL = 10
-SOL_NUM = 140
+SOL_NUM = 132
 
 original_folder = f"sol{SOL_NUM}"  # change this depending on where the CSV files are stored
 hdf_folder = f"sol{SOL_NUM}_hdf_packed" # change this depending on where you want the HDF45 files stored
