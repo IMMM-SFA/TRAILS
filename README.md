@@ -33,7 +33,9 @@ The data can be cited as follows:
 *Lau, L.B., Reed, P.M., and Gold, D.F. (2025). TRAILS Output Files. MSD-Live. 10.57931/2524573.*
 
 ### Cite the code in this repository
-If you would like to 
+To cite this repository, use the citation below:
+
+
 
 ## :computer: Contributing software
 | Model | Version | Repository Link | DOI |
