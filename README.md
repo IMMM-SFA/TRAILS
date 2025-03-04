@@ -10,35 +10,39 @@ Lillian Lau<sup>1\*</sup>, Patrick M. Reed<sup>1</sup>,  and David F. Gold<sup>2
 
 \* corresponding author:  lbl59@cornell.edu
 
+## :mailbox: Contents
+- [Abstract](#memo-abstract)
+- [Journal Reference](#pencil2-journal-reference)
+- [Data and Code Reference](#1234-data-and-code-reference)
+- [Contributing Software](#computer-contributing-software)
+- [Reproduce my experiment](#file_folder-reproduce-my-experiment)
+- [Reproduce my figures](#bar_chart-reproduce-my-figures)
+
 ## :memo: Abstract
 Urban water utilities are adopting more advanced dynamic and adaptive infrastructure investment frameworks in the face of hydrologic extremes, accelerating demand, and financial constraints. The inclusion of evolutionary multi-objective reinforcement learning (eMORL) has enhanced the identification of high-performing infrastructure investment pathways that balance conflicting objectives and remain robustness amid hydrologic and demand vulnerabilities. However, current evaluations of robustness are based on highly aggregated regional metrics that potentially conceal potential individual robustness conflicts between cooperating utility actors that may emerge over time and largely fail to effectively demonstrate the path-dependent, state-aware nature of these adaptive investment pathways. This study address this nontrivial challenge by contributing the Deeply Uncertain (DU) Pathways Time-varying Regional Assessment of Infrastructure Pathways for the Long- and Short-term (TRAILS) framework. We apply the TRAILS framework on the North Carolina Research Triangle, a challenging six-utility cooperative regional system confronting \$1 billion in in investments to support the maintenance and expansion of its water infrastructure by 2060. The TRAILS pathways diagnostic framework reveals individual robustness preferences have the potential for fundamentally changing consequential dynamics and deeply uncertain drivers of the system. We also discover critical periods of robustness conflict between the individual cooperating actors' infrastructure pathways.  We apply explainable artificial intelligence (xAI) methods to reveal the key DU factors that drive changes in robustness during these critical conflict periods. We utilize Information Theoretic sensitivity analyses to clarify the most consequential state information-action feedbacks that shape individual and regional costs, reliability, and robustness. Overall, the analytics facilitated by the DU Pathways TRAILS framework elucidate how financially significant long-term investments and short-term operational actions shape individual utilities and overall regional robustness. 
 
 ## :pencil2: Journal reference
 To cite this paper, please use the following citation _(Note: This work is currently in-prep and does not yet have a formal citation)_
-```
-Lau, L.B, Reed, P.M., and Gold, D.F. (2025). Exploiting multi-objective reinforcement learning and explainable artificial intelligence to navigate robust regional water supply investment pathways. _In prep_.
-```
 
-## :1234: Data reference
+> Lau, L.B, Reed, P.M., and Gold, D.F. (2025). Exploiting multi-objective reinforcement learning and explainable artificial intelligence to navigate robust regional water supply investment pathways. _In prep_.
+
+## :1234: Data and Code Reference
 
 ### Input data
 Detailed information on generating the hydroclimatic realizations used in this experiment can be found in the GitHub repository linked to the following paper:
-```
-Gold, D.G., Reed, P.M., Gorelick, D.E., and Characklis, G.W. (2023). Advancing Regional Water Supply Management and Infrastructure Investment Pathways That Are Equitable, Robust, Adaptive, and Cooperatively Stable. Water Resources Research. doi.org/10.1029/2022WR033671. [GitHub Repository here](https://github.com/davidfgold/DUPathwaysERAS)
-```
+
+> Gold, D.G., Reed, P.M., Gorelick, D.E., and Characklis, G.W. (2023). Advancing Regional Water Supply Management and Infrastructure Investment Pathways That Are Equitable, Robust, Adaptive, and Cooperatively Stable. Water Resources Research. doi.org/10.1029/2022WR033671. [GitHub Repository here](https://github.com/davidfgold/DUPathwaysERAS)
 
 ### Output data
 A subset of the output data containing the values needed to calculate time-varying performance, robustness, and generate infrastructure pathways can be found at this [MSDLive data repository](10.57931/2524573). 
 To cite the data, use the citation below:
-```
-Lau, L.B, Reed, P.M., and Gold, D.F. (2025). TRAILS Output Files. [Data]. https://doi.org/10.57931/2524573.
-```
+
+> Lau, L.B, Reed, P.M., and Gold, D.F. (2025). TRAILS Output Files. [Data]. https://doi.org/10.57931/2524573.
 
 ### Cite the code in this repository
 To cite this repository, use the citation below:
-```
-Lau, L. B., Reed, P. M., & Gold, D. F. Data and code for 'Exploiting multi-objective reinforcement learning and explainable artificial intelligence to navigate robust regional water supply investment pathways.' [Computer software]. https://doi.org/10.57931/2525987
-```
+
+> Lau, L. B., Reed, P. M., & Gold, D. F. Data and code for 'Exploiting multi-objective reinforcement learning and explainable artificial intelligence to navigate robust regional water supply investment pathways.' [Computer software]. https://doi.org/10.57931/252598
 
 ## :computer: Contributing software
 | Model | Version | Repository Link | DOI |
