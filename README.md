@@ -31,7 +31,7 @@ Gold, D.G., Reed, P.M., Gorelick, D.E., and Characklis, G.W. (2023). Advancing R
 A subset of the output data containing the values needed to calculate time-varying performance, robustness, and generate infrastructure pathways can be found at this [MSDLive data repository](10.57931/2524573). 
 To cite the data, use the citation below:
 ```
-Lau, L.B, Reed, P.M., and Gold, D.F. (2025). TRAILS Output Files. MSD-Live. https://doi.org/10.57931/2524573.
+Lau, L.B, Reed, P.M., and Gold, D.F. (2025). TRAILS Output Files. [Data]. https://doi.org/10.57931/2524573.
 ```
 
 ### Cite the code in this repository
