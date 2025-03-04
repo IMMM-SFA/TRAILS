@@ -17,4 +17,4 @@ The `plot_infra_counts_baseline.py` script also plots `FigureSI_infraDF.jpg` and
 ### :pushpin: Figure generation outputs
 If `plot_robustness_timeseries.py` was run correctly, you should see a new `critical_periods/` folder created in your current directory. This folder should contain 2-column CSV files that contain your start and ending weeks of the robustness conflict periods for the region. This will come in handy when generating Figures 7, 8, and 9.
 
-
+[Back to main README](https://github.com/lbl59/TRAILS)

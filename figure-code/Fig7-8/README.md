@@ -15,3 +15,5 @@ To generate each of the columns in Figures 7 and 8, run the code in the order sh
 Running `plot_shap_values.py` will create a two new folders inside your current directory:
     - `shap_bar_figures/` contains the SHAP bar plots for all your selected solutions at the start, middle and end of the critical robustness conflict periods. 
     - `important_SOWs/` contains CSV files of the SOWs that contain the key characteristics determining success (positive) or failure (negative). This will be important for generating Figure 9.
+
+[Back to main README](https://github.com/lbl59/TRAILS)

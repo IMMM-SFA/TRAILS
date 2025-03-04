@@ -55,3 +55,5 @@ This directory contains the input files and scripts to perform the DU Re-Evaluat
     | `convert_to_hdf.sh` | Submits the `convert_to_hdf.py` Python script to your computing resource's queue. This step can take up to 2 hours to complete (depending on your architecture), so regularly check your job queue by typing `squeue` into your command line. | `sbatch convert_to_hdf.sh` |
     
     You should be able to locate all your HDF5 in your selected folder once this step is completed. Move your HDF5 folder to the main `Phase1/` directory for easier access in Step 2.
+
+[Back to main README](https://github.com/lbl59/TRAILS)

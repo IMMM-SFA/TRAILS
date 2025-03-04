@@ -5,3 +5,5 @@ All figures with the exception of Figures 2 and 3 have subdirectories containing
 Please navigate into each Figure's subdirectory to view and run their corresponding scripts. 
 
 **Note**: Some code scripts used to generate Figures in the `figures/main/` folder can also be used to generate figures in the `figures/supporting/` folder, unless stated the code script is explicitly listed in the `Fig_Supporting/` folder.  
+
+[Back to main README](https://github.com/lbl59/TRAILS)

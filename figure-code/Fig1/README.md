@@ -23,4 +23,4 @@ To generate Figures 1(a) and (b), run the code in the order shown in the table b
 | 1(a) | `plot_map.py` | Plots the map of the Research Triangle, its water bodies, and water utilities. | `python ./plot_demand_projections.py` |
 | 1(b) | `plot_demand_projections.py` | Plots the demand projections of each utility over the next 60 years. | `python ./plot_map.py` |
 
-
+[Back to main README](https://github.com/lbl59/TRAILS)

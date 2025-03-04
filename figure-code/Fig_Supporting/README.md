@@ -13,3 +13,5 @@ To generate the factor maps for a chosen solution, run the code in the order sho
 
 ### :pushpin: Figure generation outputs
 Running `plot_factor_maps.py` will create a a new folder inside your current directory. This folder contains the factor map plots for all the utilities for a given solution at the start, middle and end of the critical robustness conflict periods. 
+
+[Back to main README](https://github.com/lbl59/TRAILS)

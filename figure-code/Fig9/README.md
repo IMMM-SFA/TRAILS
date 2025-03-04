@@ -19,3 +19,5 @@ The above code scripts also plots `FigSI_itsaRR.jpg` in the `figures/supporting/
 
 ### :pushpin: Figure generation outputs
 If `rof_exceedances_analysis_oneutil.py` was run correctly when submitting it using `plot_itsa_contributions.sh`, a folder called `rof_exceedances/` should be created in your current directory. This folder stores the ITSA plots for each utility for your selected solution.
+
+[Back to main README](https://github.com/lbl59/TRAILS)
