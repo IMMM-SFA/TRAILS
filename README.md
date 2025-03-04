@@ -16,26 +16,29 @@ Urban water utilities are adopting more advanced dynamic and adaptive infrastruc
 ## :pencil2: Journal reference
 To cite this paper, please use the following citation _(Note: This work is currently in-prep and does not yet have a formal citation)_
 ```
-Lau, L., Reed, P.M., and Gold, D.F. (2025). Exploiting multi-objective reinforcement learning and explainable artificial intelligence to navigate robust regional water supply investment pathways. _In prep_.
+Lau, L.B, Reed, P.M., and Gold, D.F. (2025). Exploiting multi-objective reinforcement learning and explainable artificial intelligence to navigate robust regional water supply investment pathways. _In prep_.
 ```
 
 ## :1234: Data reference
 
 ### Input data
 Detailed information on generating the hydroclimatic realizations used in this experiment can be found in the GitHub repository linked to the following paper:
-
-*Gold, D.G., Reed, P.M., Gorelick, D.E., and Characklis, G.W. (2023). Advancing Regional Water Supply Management and Infrastructure Investment Pathways That Are Equitable, Robust, Adaptive, and Cooperatively Stable. Water Resources Research. doi.org/10.1029/2022WR033671. [GitHub Repository here](https://github.com/davidfgold/DUPathwaysERAS)*
+```
+Gold, D.G., Reed, P.M., Gorelick, D.E., and Characklis, G.W. (2023). Advancing Regional Water Supply Management and Infrastructure Investment Pathways That Are Equitable, Robust, Adaptive, and Cooperatively Stable. Water Resources Research. doi.org/10.1029/2022WR033671. [GitHub Repository here](https://github.com/davidfgold/DUPathwaysERAS)
+```
 
 ### Output data
 A subset of the output data containing the values needed to calculate time-varying performance, robustness, and generate infrastructure pathways can be found at this [MSDLive data repository](10.57931/2524573). 
-The data can be cited as follows:
-
-*Lau, L.B., Reed, P.M., and Gold, D.F. (2025). TRAILS Output Files. MSD-Live. 10.57931/2524573.*
+To cite the data, use the citation below:
+```
+Lau, L.B, Reed, P.M., and Gold, D.F. (2025). TRAILS Output Files. MSD-Live. https://doi.org/10.57931/2524573.
+```
 
 ### Cite the code in this repository
 To cite this repository, use the citation below:
-
-
+```
+Lau, L. B., Reed, P. M., & Gold, D. F. Data and code for 'Exploiting multi-objective reinforcement learning and explainable artificial intelligence to navigate robust regional water supply investment pathways.' [Computer software]. https://doi.org/10.57931/2525987
+```
 
 ## :computer: Contributing software
 | Model | Version | Repository Link | DOI |
