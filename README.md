@@ -46,7 +46,7 @@ To cite the data, use the citation below:
 ### Cite the code in this repository
 To cite this repository, use the citation below:
 
-> Lau, L. B., Reed, P. M., & Gold, D. F. Data and code for 'Exploiting multi-objective reinforcement learning and explainable artificial intelligence to navigate robust regional water supply investment pathways.' [Computer software]. https://doi.org/10.57931/252598
+> Lau, L. B., Reed, P. M., & Gold, D. F. (2025). Data and code for 'Exploiting multi-objective reinforcement learning and explainable artificial intelligence to navigate robust regional water supply investment pathways.' [Computer software]. https://doi.org/10.57931/252598
 
 [Back to contents](#mailbox-contents)
 
