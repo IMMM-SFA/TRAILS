@@ -41,7 +41,7 @@ Detailed information on generating the hydroclimatic realizations used in this e
 A subset of the output data containing the values needed to calculate time-varying performance, robustness, and generate infrastructure pathways can be found at this [MSDLive data repository](10.57931/2524573). 
 To cite the data, use the citation below:
 
-> Lau, L.B, Reed, P.M., and Gold, D.F. (2025). TRAILS Output Files. [Data]. https://doi.org/10.57931/2524573.
+> Lau, L., Reed, P. M., & Gold, D. F. (2025). TRAILS Output Files (Version v1) [Data set]. MSD-LIVE Data Repository. https://doi.org/10.57931/2524573 
 
 ### Cite the code in this repository
 To cite this repository, use the citation below:
